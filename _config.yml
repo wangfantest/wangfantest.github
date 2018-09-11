@@ -1,5 +1,5 @@
 # Site settings 配置站点
-title: 'fjqisba's blog'
+title: 'fjqisba的个人博客'
 description: '大家好,我是fjqisba!'
 keyword: 'fjqisba'
 url: 'http://fjqisba.github.io' # your host
@@ -19,14 +19,14 @@ footer:
 # Author 配置博主信息
 author: 'fjqisba'
 nickname: 'fjqisba'
-bio: '逆向'
+bio: '逆向爱好者'
 avatar: '/assets/img/profile.png'
 
 # Search
 search: true
 
 # Night mode
-nightMode: true
+nightMode: false
 
 # Comments 评论功能
 comments:
@@ -49,10 +49,7 @@ postPatterns: 'circuitBoard'
 # SNS settings 配置社交网站
 # url: email, weibo, zhihu, twitter, instagram, juejin, github, douban, facebook, dribble, uicn, jianshu, medium, linkedin
 sns:
-  weibo: '//weibo.com/lovecolcol'
-  juejin: '//juejin.im/user/57a6f434165abd006159b4cc'
-  instagram: '//www.instagram.com/steveliaocn'
-  github: '//github.com/kaeyleo'
+  github: '//github.com/fjqisba'
 
 # Tags 设置标签
 recommend-tags: true # whether or not display recommend-tags on the sidebar
