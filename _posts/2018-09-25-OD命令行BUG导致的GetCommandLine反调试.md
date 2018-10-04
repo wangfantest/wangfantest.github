@@ -6,7 +6,9 @@ categories: ollydbg
 tags: ollydbg bug修复 反调试
 ---
 
-原来OD一直有一个bug,就是在CreateProcessA创建EXE进程的时候,传入的命令行参数和不在OD里调试的命令行参数不一致！！！
+创建进程有两个重要的参数ModuleFileName和CommandLine,只要不同时为NULL,即可成功创建进程.
+调试器创建进程一直都是以命令行的方式进行,然而这样就导致与正常打开进程所生成的命令行不一致.
+
 这就导致可以利用这个BUG,使用GetCommandLine进行检测OD调试器.
 
 例如
@@ -28,5 +30,7 @@ tags: ollydbg bug修复 反调试
 其实说白了就是利用了命令行后是否有一个空格符来检测是否为反调试....
 知道了这个bug就很好处理了,可以定位到OD关键代码处0x00477925,对此处进行patch即可修正此BUG
 
-此外我还对其它调试器进行了测试,发现YZDBG和X32DBG都有这个BUG,看样子这个反调试还是挺厉害的啊.....
+此外我还对其它调试器进行了测试,发现YZDBG和X32DBG都能被轻易检测到......
+
+但是此反调试兼容性并不是很好,因为有的进程例如通过CMD来打开进程,不带任何参数情况下，ModuleFileName和CommandLine是相同的,而且CommandLine并没有双引号,自然也就不需要空格了.这就会导致误判.......
 ![坑爹](/assets/img/坑爹.gif)
