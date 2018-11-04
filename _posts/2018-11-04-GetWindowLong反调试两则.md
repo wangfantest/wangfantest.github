@@ -3,7 +3,7 @@ layout: post
 title: 'GetWindowLong反调试两则'
 date: 2018-11-04
 categories: MarkDown
-tags: 反调试 OD
+tags: 反调试 ollydbg
 ---
 
 今天遇到了两个比较有意思的反调试.
