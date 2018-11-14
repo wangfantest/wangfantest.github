@@ -3,7 +3,7 @@ layout: post
 title: 'OD命令行BUG导致的GetCommandLine反调试'
 date: 2018-09-19
 categories: ollydbg
-tags: ollydbg bug修复 反调试
+tags: ollydbg 反调试
 ---
 
 创建进程有两个重要的参数ModuleFileName和CommandLine,只要不同时为NULL,即可成功创建进程.
