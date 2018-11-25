@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'OD命令行BUG导致的GetCommandLine反调试'
+title: '反调试中特殊的GetCommandLine反调试'
 date: 2018-09-19
 categories: ollydbg
 tags: ollydbg 反调试
