@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Fyne - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/fyne/</link>
+        <description>Fyne - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 05 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/fyne/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言使用Fyne界面库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/</link>
+    <pubDate>Thu, 05 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/</guid>
+    <description><![CDATA[项目地址:https://github.com/fyne-io/fyne 示例代码:https://github.com/fyne-io/fy]]></description>
+</item>
+</channel>
+</rss>

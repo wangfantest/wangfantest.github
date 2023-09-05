@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Flutter逆向之搭建dart源码(一) - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="Flutter逆向之搭建dart源码(一)" />
+<meta property="og:description" content="​ Flutter难就难在Dart部分的逆向，这又是一套字节码执行引擎，目前没有好用的反编译工具。 1、先了解了解Dart语言吧 https://dart.dev/overview 博客 https://blog.tst.sh/reverse-engineering-flutter-apps-part-1/ 2、来到" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/flutter%E9%80%86%E5%90%91%E4%B9%8B%E6%90%AD%E5%BB%BAdart%E6%BA%90%E7%A0%81%E4%B8%80/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-11-06T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Flutter逆向之搭建dart源码(一)"/>
+<meta name="twitter:description" content="​ Flutter难就难在Dart部分的逆向，这又是一套字节码执行引擎，目前没有好用的反编译工具。 1、先了解了解Dart语言吧 https://dart.dev/overview 博客 https://blog.tst.sh/reverse-engineering-flutter-apps-part-1/ 2、来到"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/flutter%E9%80%86%E5%90%91%E4%B9%8B%E6%90%AD%E5%BB%BAdart%E6%BA%90%E7%A0%81%E4%B8%80/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/flutter%E9%80%86%E5%90%91%E4%B9%8B%E5%88%86%E6%9E%90dart%E6%BA%90%E7%A0%81%E4%BA%8C/" /><link rel="next" href="https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Flutter逆向之搭建dart源码(一)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91\/flutter%E9%80%86%E5%90%91%E4%B9%8B%E6%90%AD%E5%BB%BAdart%E6%BA%90%E7%A0%81%E4%B8%80\/"
+        },"genre": "posts","keywords": "Flutter, Dart","wordcount":  823 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91\/flutter%E9%80%86%E5%90%91%E4%B9%8B%E6%90%AD%E5%BB%BAdart%E6%BA%90%E7%A0%81%E4%B8%80\/","datePublished": "2022-11-06T00:00:00+00:00","dateModified": "2022-11-06T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Flutter逆向之搭建dart源码(一)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>安卓逆向</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-06">2022-11-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 823 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>​	Flutter难就难在Dart部分的逆向，这又是一套字节码执行引擎，目前没有好用的反编译工具。</p>
+<p>1、先了解了解Dart语言吧</p>
+<p><a href="https://dart.dev/overview" target="_blank" rel="noopener noreffer">https://dart.dev/overview</a>
+</p>
+<p>博客</p>
+<p><a href="https://blog.tst.sh/reverse-engineering-flutter-apps-part-1/" target="_blank" rel="noopener noreffer">https://blog.tst.sh/reverse-engineering-flutter-apps-part-1/</a>
+</p>
+<p>2、来到项目地址https://github.com/dart-lang/sdk，发现搭建项目需要准备以下条件:</p>
+<ul>
+<li>
+<p>Visual Studio 2022 社区版。</p>
+</li>
+<li>
+<p>Windows调试SDK，安装方法https://stackoverflow.com/questions/46237620/how-to-install-debugging-tools-with-visual-studio-2017-installer</p>
+</li>
+<li>
+<p>gclient，看起来像是Google自家的项目管理工具，下载地址是:https://www.chromium.org/developers/how-tos/depottools/，添加环境变量。</p>
+</li>
+<li>
+<p>安装Python3，添加环境变量。</p>
+</li>
+<li>
+<p>添加环境变量DEPOT_TOOLS_WIN_TOOLCHAIN为0</p>
+</li>
+</ul>
+<p><figure><a class="lightgallery" href="/images/Dart/%e4%bf%ae%e6%94%b9%e7%a4%ba%e6%84%8f%e5%9b%be.png" title="调试SDK" data-thumbnail="/images/Dart/修改示意图.png" data-sub-html="<h2>调试SDK</h2><p>调试SDK</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/Dart/%e4%bf%ae%e6%94%b9%e7%a4%ba%e6%84%8f%e5%9b%be.png"
+            data-srcset="/images/Dart/%e4%bf%ae%e6%94%b9%e7%a4%ba%e6%84%8f%e5%9b%be.png, /images/Dart/%e4%bf%ae%e6%94%b9%e7%a4%ba%e6%84%8f%e5%9b%be.png 1.5x, /images/Dart/%e4%bf%ae%e6%94%b9%e7%a4%ba%e6%84%8f%e5%9b%be.png 2x"
+            data-sizes="auto"
+            alt="/images/Dart/修改示意图.png" />
+    </a><figcaption class="image-caption">调试SDK</figcaption>
+    </figure></p>
+<p>3、创建目录sdk，执行下载源码指令</p>
+<p>使用cmd</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fetch dart
+</span></span></code></pre></div><p>如果出现HTTP/2 stream 1 was not closed cleanly before end of the underlying stream错误，试试以下命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global http.version HTTP/1.1
+</span></span><span class="line"><span class="cl">git config --global http.postBuffer <span class="m">524288000</span>
+</span></span></code></pre></div><p>如果网络环境不太好，可以去vultr租一个服务器，把下载好的包上传到Google云盘，再拉回来。。。。。。</p>
+<p>4、生成项目</p>
+<p>使用powsershell</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">cd </span><span class="n">sdk</span>
+</span></span><span class="line"><span class="cl"><span class="n">python3</span> <span class="p">./</span><span class="n">tools</span><span class="p">/</span><span class="n">build</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-no-goma</span> <span class="p">-</span><span class="n">-mode</span> <span class="n">debug</span> <span class="p">-</span><span class="n">-arch</span> <span class="n">x64</span> <span class="n">create_sdk</span>
+</span></span><span class="line"><span class="cl"><span class="c">#只生成runtime</span>
+</span></span><span class="line"><span class="cl"><span class="n">python3</span> <span class="p">./</span><span class="n">tools</span><span class="p">/</span><span class="n">build</span><span class="p">.</span><span class="n">py</span> <span class="p">-</span><span class="n">-mode</span> <span class="n">debug</span> <span class="p">-</span><span class="n">-arch</span> <span class="n">x64</span> <span class="n">runtime</span>
+</span></span></code></pre></div><p>如果出现<code>You must install Windows 10 SDK version 10.0.20348.0 including the &quot;Debugging Tools for Windows&quot; feature</code>错误，安装对应版本的Windows调试SDK。</p>
+<p>如果出现xxx.gn文件缺失，且执行<code>gclient sync</code>命令之后错误依然出现，可以直接删掉整个目录从第三步开始。</p>
+<p>5、编译不同的版本</p>
+<p>事实上，后面我们会知道每个dart版本都有一个不同的hash值，我们需要根据该值来编译不同的版本源码。</p>
+<p>关于如何切换到指定的分支，首先找到dart版本对应的commit，执行以下命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git checkout 5aa5cd76f00e7774f71367f34d9998cfa0034d04
+</span></span><span class="line"><span class="cl">git clean -ffd
+</span></span><span class="line"><span class="cl">gclient sync -D --force --reset
+</span></span><span class="line"><span class="cl">gclient sync -D --force --reset --with_branch_heads
+</span></span><span class="line"><span class="cl">git -c core.deltaBaseCacheLimit<span class="o">=</span>2g clone checkout 73c34f2ad73f3d5e89680206a3beabb510be818c --progress https://dart.googlesource.com/sdk.git
+</span></span></code></pre></div><h2 id="参考资料">参考资料</h2>
+<p><a href="https://www.pnfsoftware.com/blog/dart-aot-snapshot-helper-plugin-to-better-analyze-flutter-based-apps/" target="_blank" rel="noopener noreffer">https://www.pnfsoftware.com/blog/dart-aot-snapshot-helper-plugin-to-better-analyze-flutter-based-apps/</a>
+</p>
+<p><a href="https://blog.tst.sh/reverse-engineering-flutter-apps-part-1/" target="_blank" rel="noopener noreffer">Reverse engineering Flutter apps (Part 1) (tst.sh)</a>
+</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/flutter/">Flutter</a>,&nbsp;<a href="/tags/dart/">Dart</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/flutter%E9%80%86%E5%90%91%E4%B9%8B%E5%88%86%E6%9E%90dart%E6%BA%90%E7%A0%81%E4%BA%8C/" class="prev" rel="prev" title="Flutter逆向之分析dart源码(二)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Flutter逆向之分析dart源码(二)</a>
+            <a href="/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="next" rel="next" title="安卓逆向常见问题">安卓逆向常见问题<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

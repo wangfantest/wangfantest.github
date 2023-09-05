@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>静态分析 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/</link>
+        <description>静态分析 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sat, 10 Apr 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/" rel="self" type="application/rss+xml" /><item>
+    <title>IDA7.5支持中文的办法</title>
+    <link>https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/</link>
+    <pubDate>Sat, 10 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/</guid>
+    <description><![CDATA[解除函数名称的限制 默认配置情况下我们是不能将函数名称修改为中文的，会提示bad character，意思就是包含非法字符，那么怎样让中文成为合]]></description>
+</item>
+<item>
+    <title>配置IDA环境</title>
+    <link>https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/%E9%85%8D%E7%BD%AEida%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Mon, 17 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/%E9%85%8D%E7%BD%AEida%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[当前IDA能用的版本勉强只有一个泄露出安装包+跑出安装包Key的IDA 7.2版本 + x64 Hex-Rays 可以参考一下此文档: https://github.com/jas502n/IDA_Pro_7.2 由于没有完整的Hex-Rays插]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Go语言菜鸟系列(二)基础语法 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="Go语言菜鸟系列(二)基础语法" />
+<meta property="og:description" content="基础类型 整数型:int、uint、int8、int16、int32、int64、uint、uint8、uint16、uint32、uint6" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%BA%8C%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" />
+<meta property="article:published_time" content="2021-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-11-09T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go语言菜鸟系列(二)基础语法"/>
+<meta name="twitter:description" content="基础类型 整数型:int、uint、int8、int16、int32、int64、uint、uint8、uint16、uint32、uint6"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%BA%8C%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="prev" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%B8%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://fjqisba.github.io/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go语言菜鸟系列(二)基础语法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/go%E8%AF%AD%E8%A8%80\/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%BA%8C%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95\/"
+        },"genre": "posts","keywords": "笔记, Go","wordcount":  317 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/go%E8%AF%AD%E8%A8%80\/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%BA%8C%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95\/","datePublished": "2021-11-09T00:00:00+00:00","dateModified": "2021-11-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Go语言菜鸟系列(二)基础语法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/go%E8%AF%AD%E8%A8%80/"><i class="far fa-folder fa-fw"></i>Go语言</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-09">2021-11-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 317 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="基础类型">基础类型</h4>
+<p>整数型:int、uint、int8、int16、int32、int64、uint、uint8、uint16、uint32、uint64</p>
+<p>浮点类型:float32、float64</p>
+<p>布尔类型:bool</p>
+<p>字符串类型:string</p>
+<p>字符类型:byte、rune</p>
+<p>1、Go语言编译器不会对数据类型进行任何隐式转换，int和int32是两种不同的类型。</p>
+<p>2、整数型默认值是0，布尔类型默认值是false，字符串默认是空字符串</p>
+<p>3、这些基础类型在进行函数参数传递的时候，都是值传递，即会拷贝一份副本传递至函数体内，函数内对参数的修改不会影响到变量本身。</p>
+<h4 id="变量声明">变量声明</h4>
+<p>有两种声明方式</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">//第一种是正常的声明
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">a</span> <span class="kt">int</span>
+<span class="nx">a</span> <span class="p">=</span> <span class="mi">1</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">2</span>
+
+<span class="c1">//第二种是类型自动推导
+</span><span class="c1"></span><span class="nx">c</span> <span class="o">:=</span> <span class="mi">3</span>
+<span class="nx">d</span> <span class="o">:=</span> <span class="s">&#34;4&#34;</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>,&nbsp;<a href="/tags/go/">Go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%B8%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="prev" rel="prev" title="Go语言菜鸟系列(一)环境搭建"><i class="fas fa-angle-left fa-fw"></i>Go语言菜鸟系列(一)环境搭建</a>
+            <a href="/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/" class="next" rel="next" title="linux安装nload命令">linux安装nload命令<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

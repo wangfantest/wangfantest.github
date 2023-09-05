@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>QT - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/qt/</link>
+        <description>QT - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 05 Apr 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/qt/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言使用QT界面库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/</link>
+    <pubDate>Tue, 05 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/</guid>
+    <description><![CDATA[Go语言使用QT界面库 Go语言要使用QT库的话，装起来也是比较麻烦 项目地址:https://github.com/therecipe/qt 文]]></description>
+</item>
+<item>
+    <title>QT组件之QListWidget</title>
+    <link>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/</link>
+    <pubDate>Thu, 15 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/</guid>
+    <description><![CDATA[在QT的开发中，免不了要用到列表(QListWidget)这个控件。 一、初始化表格 信号大全 QListWidget控件的信号 void itemPressed(QListWidgetItem *item); void itemClicked(QListWidgetItem *item); void itemDoubleClicked(QListWidgetItem *item);]]></description>
+</item>
+<item>
+    <title>QT组件之QTableWidget</title>
+    <link>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/</link>
+    <pubDate>Mon, 05 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/</guid>
+    <description><![CDATA[在QT的开发中，免不了要用到表格(QTableWidget)这个控件。 一、初始化表格 设置基本属性 ui.FileTableWidget-&gt;setColumnCount(2); //设置列数 ui.FileTableWidget-&gt;setColumnWidth(0, 100); //设置第一列宽度 ui.FileTableWidget-&gt;setColumnWidth(1, 300); //]]></description>
+</item>
+</channel>
+</rss>

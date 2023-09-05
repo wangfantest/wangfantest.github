@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>加壳 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E5%8A%A0%E5%A3%B3/</link>
+        <description>加壳 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E5%8A%A0%E5%A3%B3/" rel="self" type="application/rss+xml" /><item>
+    <title>C#加壳工具</title>
+    <link>https://fjqisba.github.io/posts/csharp/csharp%E5%8A%A0%E5%A3%B3%E5%B7%A5%E5%85%B7/</link>
+    <pubDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/csharp/csharp%E5%8A%A0%E5%A3%B3%E5%B7%A5%E5%85%B7/</guid>
+    <description><![CDATA[众所周知，自动有了Dnspy这类的反编译工具，C#写的程序如果不加壳，那就差不多把源码送给别人。 而一款商业化的工具，自然是需要加壳工具保护的]]></description>
+</item></channel>
+</rss>

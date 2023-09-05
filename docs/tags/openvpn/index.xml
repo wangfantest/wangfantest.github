@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OpenVPN - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/openvpn/</link>
+        <description>OpenVPN - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 09 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/openvpn/" rel="self" type="application/rss+xml" /><item>
+    <title>OpenVPN研究</title>
+    <link>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/openvpn%E7%A0%94%E7%A9%B6/</link>
+    <pubDate>Thu, 09 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/openvpn%E7%A0%94%E7%A9%B6/</guid>
+    <description><![CDATA[前言 本来想研究OpenVPN如何抓取流量的，可惜没研究出啥成果，备份一下资料而已。 OpenVpn 1、下载对应版本的代码 wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.9.tar.gz 2、安装lzo压缩库，不同的操]]></description>
+</item>
+</channel>
+</rss>

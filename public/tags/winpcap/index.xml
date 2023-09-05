@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Winpcap - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/winpcap/</link>
+        <description>Winpcap - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 27 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/winpcap/" rel="self" type="application/rss+xml" /><item>
+    <title>Cain工具使用</title>
+    <link>https://fjqisba.github.io/posts/%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/cain%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</link>
+    <pubDate>Wed, 27 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2/cain%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/</guid>
+    <description><![CDATA[​ Cain工具官方版是一款专业可靠的远程控制命令或密码的软件，Cain工具最新版可以明文捕捉几十种方式的远程密码或口令，支持十几种远程控制或]]></description>
+</item></channel>
+</rss>

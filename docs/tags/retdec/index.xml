@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>RetDec - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/retdec/</link>
+        <description>RetDec - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 25 Apr 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/retdec/" rel="self" type="application/rss+xml" /><item>
+    <title>RetDec反编译器学习</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Mon, 25 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[项目地址 https://github.com/avast/retdec 编译前置条件 该项目引用了不少github远程库，你得有比较好的网络环境，不然国内网络你懂的。我自己也是用SSR + SSTap才在vi]]></description>
+</item>
+</channel>
+</rss>

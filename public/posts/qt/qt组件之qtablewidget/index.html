@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>QT组件之QTableWidget - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="QT组件之QTableWidget" />
+<meta property="og:description" content="在QT的开发中，免不了要用到表格(QTableWidget)这个控件。 一、初始化表格 设置基本属性 ui.FileTableWidget-&gt;setColumnCount(2); //设置列数 ui.FileTableWidget-&gt;setColumnWidth(0, 100); //设置第一列宽度 ui.FileTableWidget-&gt;setColumnWidth(1, 300); //" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/" />
+<meta property="article:published_time" content="2021-04-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="QT组件之QTableWidget"/>
+<meta name="twitter:description" content="在QT的开发中，免不了要用到表格(QTableWidget)这个控件。 一、初始化表格 设置基本属性 ui.FileTableWidget-&gt;setColumnCount(2); //设置列数 ui.FileTableWidget-&gt;setColumnWidth(0, 100); //设置第一列宽度 ui.FileTableWidget-&gt;setColumnWidth(1, 300); //"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/" /><link rel="prev" href="https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/" /><link rel="next" href="https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "QT组件之QTableWidget",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/qt\/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget\/"
+        },"genre": "posts","keywords": "TableWidget, 新手教程, QT","wordcount":  636 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/qt\/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget\/","datePublished": "2021-04-05T00:00:00+00:00","dateModified": "2021-04-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">QT组件之QTableWidget</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/qt/"><i class="far fa-folder fa-fw"></i>QT</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-05">2021-04-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 636 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一初始化表格">一、初始化表格</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在QT的开发中，免不了要用到表格(QTableWidget)这个控件。</p>
+<h3 id="一初始化表格">一、初始化表格</h3>
+<h4 id="设置基本属性">设置基本属性</h4>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">setColumnCount</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>        <span class="c1">//设置列数
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">setColumnWidth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>   <span class="c1">//设置第一列宽度
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">setColumnWidth</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>   <span class="c1">//设置第二列宽度
+</span><span class="c1"></span>
+<span class="c1">//使行列头自适应宽度，最后一列将会填充空白部分  
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">horizontalHeader</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setStretchLastSection</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>            
+  
+<span class="c1">//使行列头自适应宽度，所有列平均分来填充空白部分              
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">horizontalHeader</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setResizeMode</span><span class="p">(</span><span class="n">QHeaderView</span><span class="o">::</span><span class="n">Strtch</span><span class="p">);</span>          
+
+<span class="c1">//设置表头标题
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">FileTableWidget</span><span class="o">-&gt;</span><span class="n">setHorizontalHeaderLabels</span><span class="p">(</span><span class="n">QStringList</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="s">&#34;property&#34;</span><span class="o">&lt;&lt;</span><span class="s">&#34;value&#34;&#34;);</span>
+
+<span class="c1">//设置选中的模式,有禁止选择、单选、多选等5种模式
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setSelectionMode</span><span class="p">(</span><span class="n">QAbstractItemView</span><span class="o">::</span><span class="n">ExtendedSelection</span><span class="p">);</span>
+
+<span class="c1">//设置整个表格不可被编辑
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setEditTriggers</span><span class="p">(</span><span class="n">QAbstractItemView</span><span class="o">::</span><span class="n">NoEditTriggers</span><span class="p">);</span>
+
+<span class="c1">//设置某一列不可编辑
+</span><span class="c1"></span><span class="n">QTableWidgetItem</span> <span class="o">*</span><span class="n">item1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QTableWidgetItem</span><span class="p">(</span><span class="err">“</span><span class="n">xxx</span><span class="err">”</span><span class="p">);</span>
+<span class="n">item1</span><span class="o">-&gt;</span><span class="n">setFlags</span><span class="p">(</span><span class="n">item1</span><span class="o">-&gt;</span><span class="n">flags</span><span class="p">()</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">Qt</span><span class="o">::</span><span class="n">ItemIsEditable</span><span class="p">));</span>
+<span class="n">ui</span><span class="o">-&gt;</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setItem</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">item1</span><span class="p">);</span>
+</code></pre></div><h4 id="添加代理">添加代理</h4>
+<p>如果我们想让表格中的单元不仅仅是显示文本，而是其他的控件，例如编辑框、复选框等，这个时候我们就得使用代理了，可以给所有的单元添加代理控件:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//给所有的单元添加代理控件
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setItemDelegate</span><span class="p">(</span><span class="k">new</span> <span class="n">ReadOnlyDelegate</span><span class="p">());</span>
+</code></pre></div><p>或者只给某一列或某一行添加代理控件:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//给特定的单元添加代理控件
+</span><span class="c1"></span><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setItemDelegateForColumn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">ReadOnlyDelegate</span><span class="p">());</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setItemDelegateForRow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">ReadOnlyDelegate</span><span class="p">());</span>
+</code></pre></div><p>假设我们想要通过代理控件达到的需求是，控件列表中的内容不可编辑、但是可以选中且被复制，那么我们需要实现以下代码:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;QLineEdit&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;QStyledItemDelegate&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="k">class</span> <span class="nc">ReadOnlyDelegate</span> <span class="o">:</span> <span class="k">public</span> <span class="n">QStyledItemDelegate</span>
+<span class="p">{</span>
+	<span class="n">Q_OBJECT</span>
+
+<span class="k">public</span><span class="o">:</span>
+        <span class="n">ReadOnlyDelegate</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span> <span class="n">parent</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span><span class="n">QStyledItemDelegate</span><span class="p">(){}</span>
+	<span class="n">QWidget</span><span class="o">*</span> <span class="nf">createEditor</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">parent</span><span class="p">,</span> <span class="k">const</span> <span class="n">QStyleOptionViewItem</span><span class="o">&amp;</span> <span class="n">option</span><span class="p">,</span>
+		<span class="k">const</span> <span class="n">QModelIndex</span><span class="o">&amp;</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span>
+	<span class="p">{</span>
+		<span class="n">QLineEdit</span><span class="o">*</span> <span class="n">editor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QLineEdit</span><span class="p">(</span><span class="n">parent</span><span class="p">);</span>
+		<span class="n">editor</span><span class="o">-&gt;</span><span class="n">setFrame</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+		<span class="n">editor</span><span class="o">-&gt;</span><span class="n">setReadOnly</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">editor</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kt">void</span> <span class="nf">setEditorData</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">editor</span><span class="p">,</span> <span class="k">const</span> <span class="n">QModelIndex</span><span class="o">&amp;</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">QString</span> <span class="n">value</span> <span class="o">=</span> <span class="n">index</span><span class="p">.</span><span class="n">model</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">data</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">Qt</span><span class="o">::</span><span class="n">EditRole</span><span class="p">).</span><span class="n">toString</span><span class="p">();</span>
+		<span class="n">QLineEdit</span><span class="o">*</span> <span class="n">spinBox</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QLineEdit</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">editor</span><span class="p">);</span>
+		<span class="n">spinBox</span><span class="o">-&gt;</span><span class="n">setText</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="kt">void</span> <span class="nf">setModelData</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">editor</span><span class="p">,</span> <span class="n">QAbstractItemModel</span><span class="o">*</span> <span class="n">model</span><span class="p">,</span>
+		<span class="k">const</span> <span class="n">QModelIndex</span><span class="o">&amp;</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">QLineEdit</span><span class="o">*</span> <span class="n">spinBox</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">QLineEdit</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">editor</span><span class="p">);</span>
+		<span class="n">QString</span> <span class="n">value</span> <span class="o">=</span> <span class="n">spinBox</span><span class="o">-&gt;</span><span class="n">text</span><span class="p">();</span>
+		<span class="n">model</span><span class="o">-&gt;</span><span class="n">setData</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">Qt</span><span class="o">::</span><span class="n">EditRole</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="kt">void</span> <span class="nf">updateEditorGeometry</span><span class="p">(</span><span class="n">QWidget</span><span class="o">*</span> <span class="n">editor</span><span class="p">,</span>
+		<span class="k">const</span> <span class="n">QStyleOptionViewItem</span><span class="o">&amp;</span> <span class="n">option</span><span class="p">,</span> <span class="k">const</span> <span class="n">QModelIndex</span><span class="o">&amp;</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span>
+	<span class="p">{</span>
+		<span class="n">editor</span><span class="o">-&gt;</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">option</span><span class="p">.</span><span class="n">rect</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><h4 id="二获取选中的行">二、获取选中的行</h4>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">QModelIndexList</span> <span class="n">selectedsList</span> <span class="o">=</span> <span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">selectionModel</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">selectedRows</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">selectedsList</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">selectedsList</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">n</span><span class="p">).</span><span class="n">row</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div><h4 id="三动态插入数据">三、动态插入数据</h4>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setSortingEnabled</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>   <span class="c1">//关闭排序功能
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">insertRow</span> <span class="o">=</span> <span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">rowCount</span><span class="p">();</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">insertRow</span><span class="p">(</span><span class="n">insertRow</span><span class="p">);</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="p">.</span><span class="n">setItem</span><span class="p">(</span><span class="n">insertRow</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">new</span> <span class="n">QTableWidgetItem</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">));</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setSortingEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>    <span class="c1">//开启排序功能
+</span></code></pre></div><p>这里需要注意的是，在插入数据的时候，必须关闭表头的排序(对应上述代码中的setSortingEnabled函数)，否则表格数据会错乱。</p>
+<h4 id="四清空所有数据">四、清空所有数据</h4>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">setRowCount</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">ui</span><span class="p">.</span><span class="n">tableView</span><span class="o">-&gt;</span><span class="n">clearContents</span><span class="p">();</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/tablewidget/">TableWidget</a>,&nbsp;<a href="/tags/%E6%96%B0%E6%89%8B%E6%95%99%E7%A8%8B/">新手教程</a>,&nbsp;<a href="/tags/qt/">QT</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/" class="prev" rel="prev" title="CSV解析引擎"><i class="fas fa-angle-left fa-fw"></i>CSV解析引擎</a>
+            <a href="/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/" class="next" rel="next" title="IDA7.5支持中文的办法">IDA7.5支持中文的办法<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SafeEngine - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/safeengine/</link>
+        <description>SafeEngine - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 04 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/safeengine/" rel="self" type="application/rss+xml" /><item>
+    <title>SE过虚拟机检测流程</title>
+    <link>https://fjqisba.github.io/posts/%E6%9D%82%E6%96%87/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B/</link>
+    <pubDate>Sun, 04 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%9D%82%E6%96%87/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B/</guid>
+    <description><![CDATA[1.注册表检测 [HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS] &ldquo;SystemManufacturer&rdquo;=&ldquo;VMware, Inc.&rdquo; 根据SystemManufacturer中的内容计算出一个hash值，判断是否为0x6A7BDBF4。 可以通过修改注册表]]></description>
+</item>
+</channel>
+</rss>

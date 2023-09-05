@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>浅谈TCP粘包的理解 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="浅谈TCP粘包的理解" />
+<meta property="og:description" content="​ 在开发TCP有关的程序的时候，我们就会遇到粘包的这个单词了。 ​ 首先要知道TCP是&quot;完美的&quot;，久经考验的TCP协议能够确" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/" />
+<meta property="article:published_time" content="2021-10-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="浅谈TCP粘包的理解"/>
+<meta name="twitter:description" content="​ 在开发TCP有关的程序的时候，我们就会遇到粘包的这个单词了。 ​ 首先要知道TCP是&quot;完美的&quot;，久经考验的TCP协议能够确"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/" /><link rel="prev" href="https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/" /><link rel="next" href="https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E7%A6%81%E6%AD%A2%E5%A4%9A%E5%BC%80/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "浅谈TCP粘包的理解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/c\u002b\u002b%E5%BC%80%E5%8F%91\/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3\/"
+        },"genre": "posts","keywords": "高级C\u002b\u002b, TCP","wordcount":  757 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/c\u002b\u002b%E5%BC%80%E5%8F%91\/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3\/","datePublished": "2021-10-11T00:00:00+00:00","dateModified": "2021-10-11T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">浅谈TCP粘包的理解</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++%E5%BC%80%E5%8F%91/"><i class="far fa-folder fa-fw"></i>C++开发</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-11">2021-10-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 757 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>​	在开发TCP有关的程序的时候，我们就会遇到粘包的这个单词了。</p>
+<p>​	首先要知道TCP是&quot;完美的&quot;，久经考验的TCP协议能够确保数据被有序而准确地发送和接受，因此粘包问题是个伪问题，本质上其实是应用层接收和发送数据双方之间未做好约定。</p>
+<p>​	我们都知道发送和接受的数据分别是send和recv，假设客户端发送两次数据，如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg1</span><span class="o">=</span><span class="s">&#34;1234&#34;</span><span class="p">;</span>
+<span class="n">send</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span> <span class="n">msg1</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">msg1</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg2</span><span class="o">=</span><span class="s">&#34;5678&#34;</span>
+<span class="n">send</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span> <span class="n">msg2</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">msg2</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div><p>客户端发送数据每4个字节当作一帧，那么根据服务端设置的接受数据长度的不同，有以下几种情况:</p>
+<ul>
+<li>recv和send数据长度相等，数据正常接收。</li>
+<li>recv长度小于send数据长度，数据少接收，前面的数据和后面的数据都被破坏。</li>
+<li>recv长度大于send数据长度，数据将多接收，前面的数据和后面的数据都被破坏。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-c#" data-lang="c#"><span class="c1">//数据正常接受
+</span><span class="c1"></span><span class="kt">char</span> <span class="n">buffer1</span><span class="p">[</span><span class="m">4</span><span class="p">]={</span><span class="m">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer1</span><span class="p">),</span><span class="m">0</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buffer2</span><span class="p">[</span><span class="m">4</span><span class="p">]={</span><span class="m">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer2</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer2</span><span class="p">),</span><span class="m">0</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//数据遭到破坏
+</span><span class="c1"></span><span class="kt">char</span> <span class="n">buffer1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer1</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buffer2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer2</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer2</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//数据遭到破坏
+</span><span class="c1"></span><span class="kt">char</span> <span class="n">buffer1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer1</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer1</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+<span class="kt">char</span> <span class="n">buffer2</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">buffer2</span><span class="p">,</span><span class="k">sizeof</span><span class="p">(</span><span class="n">buffer2</span><span class="p">),</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div><p>​	看到这里，我自己都觉得自己废话多，其实所谓粘包无非就是send和recv的长度不对等而已，网上说的都是屁话。</p>
+<p>完美情况下，每次发送约定好的长度，每次接受约定好的长度，什么事都没有。但是由于实际情况比较复杂，例如客户端需要发送文件给服务端，文件的长度是会动态变化的，因此需要自己设计应用层的协议算法，一般来说有下面几种想法:</p>
+<p>1、双方约定好数据长度</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//客户端
+</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">msg</span><span class="o">=</span><span class="s">&#34;1234&#34;</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">msgLen</span><span class="o">=</span><span class="n">msg</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="n">send</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="o">&amp;</span><span class="n">msgLen</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">send</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span><span class="n">msg</span><span class="p">.</span><span class="n">cstr</span><span class="p">(),</span><span class="n">msgLen</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">//服务端
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">msgLen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">msgLen</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span> <span class="n">pBuf</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">msgLen</span><span class="p">];</span>
+<span class="n">recv</span><span class="p">(</span><span class="n">ConnectSocket</span><span class="p">,</span> <span class="n">pBuf</span><span class="p">,</span> <span class="n">msgLen</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">delete</span> <span class="n">pBuf</span><span class="p">;</span>
+</code></pre></div><p>核心思想就是服务端在第一次接收到数据的时候，确认好后续的数据长度。</p>
+<p>但是上面的代码有一个潜在的问题，比如客户端连续多次发送数据，由于网络原因存在某一个send没发送出去呢？这样服务端的解析会全乱，因此上述代码还需要进一步优化。</p>
+<p>2、以指定字符串标记作为包的结束标志</p>
+<p>不管三七二十一，我们自定一个值，例如0xCCDDEEFF，服务端处理每帧数据的时候，会进行判断和分包处理。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-10-11</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E9%AB%98%E7%BA%A7c&#43;&#43;/">高级C&#43;&#43;</a>,&nbsp;<a href="/tags/tcp/">TCP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/" class="prev" rel="prev" title="TCP通讯库"><i class="fas fa-angle-left fa-fw"></i>TCP通讯库</a>
+            <a href="/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E7%A6%81%E6%AD%A2%E5%A4%9A%E5%BC%80/" class="next" rel="next" title="禁止程序多开">禁止程序多开<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

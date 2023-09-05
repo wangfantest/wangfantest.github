@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>QQ群文件协议 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="QQ群文件协议" />
+<meta property="og:description" content="因为工作需要，需要对QQ群文件协议进行逆向分析。 1.分析准备流程 首先我们要知道QQ群文件的静态页面网址是https://pan.qun.qq" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-09T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="QQ群文件协议"/>
+<meta name="twitter:description" content="因为工作需要，需要对QQ群文件协议进行逆向分析。 1.分析准备流程 首先我们要知道QQ群文件的静态页面网址是https://pan.qun.qq"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%87%E8%83%BDpush/" /><link rel="next" href="https://fjqisba.github.io/posts/ctf/%E7%9C%8B%E9%9B%AA2021-kctf%E6%98%A5%E5%AD%A3%E8%B5%9B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "QQ群文件协议",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/qq\/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE\/"
+        },"genre": "posts","keywords": "协议逆向","wordcount":  818 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/qq\/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE\/","datePublished": "2021-05-09T00:00:00+00:00","dateModified": "2021-05-09T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">QQ群文件协议</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/qq/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>QQ</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-09">2021-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 818 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1分析准备流程">1.分析准备流程</a></li>
+        <li><a href="#2bkn算法">2.BKN算法</a></li>
+        <li><a href="#3获取群文件列表">3.获取群文件列表</a></li>
+        <li><a href="#4获取文件下载地址">4.获取文件下载地址</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>因为工作需要，需要对QQ群文件协议进行逆向分析。</p>
+<h3 id="1分析准备流程">1.分析准备流程</h3>
+<p>首先我们要知道QQ群文件的静态页面网址是https://pan.qun.qq.com/clt_filetab/groupShareClientNew.html?gid=633783602，</p>
+<p>其中gid这个值就是QQ群号。</p>
+<p>我们正常情况下访问这个页面是一片空白，因为缺少QQ登录的Cookie，这个时候我们需要到<a href="https://qun.qq.com/" target="_blank" rel="noopener noreffer">QQ群官网</a>
+登录一下我们的QQ，然后再访问静态页面，就会发现能看到QQ群内的群文件，可以开始进行协议分析了。</p>
+<h3 id="2bkn算法">2.BKN算法</h3>
+<p>在分析的过程中，会遇到一个重要的参数BKN，我们其实不必理解这个参数有什么含义，只需要找到值的来源就行了。算法很简单，由Cookie中的skey转换得到，算法如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">getBKN</span><span class="p">(</span><span class="nx">skey</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="mi">5381</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">skey</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">n</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">        <span class="nx">hash</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">hash</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="nx">skey</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">hash</span> <span class="o">&amp;</span> <span class="mi">2147483647</span>  
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span></code></pre></div><h3 id="3获取群文件列表">3.获取群文件列表</h3>
+<p>请求协议如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">Request URL:https://pan.qun.qq.com/cgi-bin/group_file/get_file_list?gc</span><span class="o">=</span><span class="s">633783602&amp;bkn=xxxx&amp;start_index=0&amp;cnt=50&amp;filter_code=0&amp;folder_id=%2F&amp;show_onlinedoc_folder=1</span>
+</span></span><span class="line"><span class="cl"><span class="na">referer:https://pan.qun.qq.com/clt_filetab/groupShareClientNew.html?gid</span><span class="o">=</span><span class="s">633783602</span>
+</span></span><span class="line"><span class="cl"><span class="na">cookie:skey</span><span class="o">=</span><span class="s">xxxx</span>
+</span></span></code></pre></div><p>gc就是QQ群号，bkn是根据cookie中的skey转换得到的值，cnt是显示的群文件个数。</p>
+<p>返回的数据如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ec&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;file_list&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;create_time&#34;</span><span class="p">:</span> <span class="mi">1620539743</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/5637b4d6-1216-4d84-bbbe-579d4c65f6e2&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;modify_name&#34;</span><span class="p">:</span> <span class="s2">&#34;💀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;modify_time&#34;</span><span class="p">:</span> <span class="mi">1620539743</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;modify_uin&#34;</span><span class="p">:</span> <span class="mi">425063169</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;新建文件夹&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_name&#34;</span><span class="p">:</span> <span class="s2">&#34;💀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_uin&#34;</span><span class="p">:</span> <span class="mi">425063169</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent_id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;bus_id&#34;</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;create_time&#34;</span><span class="p">:</span> <span class="mi">1620539142</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;dead_time&#34;</span><span class="p">:</span> <span class="mi">1621403742</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;download_times&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/5fc46b55-5ff8-47dc-bf2a-7171752843e9&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;local_path&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;md5&#34;</span><span class="p">:</span> <span class="s2">&#34;3f26d3be679d81b5d9bd4fdf046d3eed&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;modify_time&#34;</span><span class="p">:</span> <span class="mi">1620539144</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;VMware.exe&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_name&#34;</span><span class="p">:</span> <span class="s2">&#34;﻿﻿﻿💀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_uin&#34;</span><span class="p">:</span> <span class="mi">425063169</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent_id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;safe_type&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sha&#34;</span><span class="p">:</span> <span class="s2">&#34;d52d301385647f4dab3fee94734534a0385c22147c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sha3&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">241597204</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;upload_size&#34;</span><span class="p">:</span> <span class="mi">241597204</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;bus_id&#34;</span><span class="p">:</span> <span class="mi">102</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;create_time&#34;</span><span class="p">:</span> <span class="mi">1618906774</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;dead_time&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;download_times&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/9366e551-cb4e-49c5-922a-17bc25f6cc3e&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;local_path&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;md5&#34;</span><span class="p">:</span> <span class="s2">&#34;d9a985b55c724f4912fe5f80e21463aef3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;modify_time&#34;</span><span class="p">:</span> <span class="mi">1618906775</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;VMOS.APK&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_name&#34;</span><span class="p">:</span> <span class="s2">&#34;💀&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;owner_uin&#34;</span><span class="p">:</span> <span class="mi">425063169</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;parent_id&#34;</span><span class="p">:</span> <span class="s2">&#34;\/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;safe_type&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sha&#34;</span><span class="p">:</span> <span class="s2">&#34;b4de8c3c29f4911bae322ea2c2fc5c306ca8c9ec43&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;sha3&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;size&#34;</span><span class="p">:</span> <span class="mi">15365031</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;upload_size&#34;</span><span class="p">:</span> <span class="mi">15365031</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;next_index&#34;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;open_flag&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;total_cnt&#34;</span><span class="p">:</span> <span class="mi">63</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;user_role&#34;</span><span class="p">:</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>bus_id推测表示文件的类型，102表示是永久文件，104表示是缓存文件。</p>
+<p>id表示文件的唯一ID，比较重要的一个值。</p>
+<p>total_cnt表示群内文件的总数。</p>
+<h3 id="4获取文件下载地址">4.获取文件下载地址</h3>
+<p>请求协议如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">Request URL:https://pan.qun.qq.com/cgi-bin/group_share_get_downurl?uin</span><span class="o">=</span><span class="s">425063169&amp;groupid=633783602&amp;pa=%2F102%2F9366e551-cb4e-49c5-951a-17bc25f6cc3e&amp;charset=utf-8&amp;g_tk=xxxx</span>
+</span></span><span class="line"><span class="cl"><span class="na">referer:https://pan.qun.qq.com/clt_filetab/groupShareClientNew.html?gid</span><span class="o">=</span><span class="s">633783602</span>
+</span></span><span class="line"><span class="cl"><span class="na">cookie:skey</span><span class="o">=</span><span class="s">xxxx</span>
+</span></span></code></pre></div><p>uin是我们的QQ号。</p>
+<p>groupid是QQ群号。</p>
+<p>pa其实是文件的bus_id和id的组合路径。</p>
+<p>g_tk的值等于bkn。</p>
+<p>结果如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;code&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;data&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;cookie&#34;</span><span class="p">:</span> <span class="s2">&#34;6138633965635533&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;dns&#34;</span><span class="p">:</span> <span class="s2">&#34;tj-ctfs.ftn.qq.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ismember&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;md5&#34;</span><span class="p">:</span> <span class="s2">&#34;d9a985b50d4f4912fe5f80e21463aef3&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;ret&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;sha&#34;</span><span class="p">:</span> <span class="s2">&#34;b4de8c3c29f4911bae322ea2c2fc006ca8c9ec43&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;sha3&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;sip&#34;</span><span class="p">:</span> <span class="s2">&#34;133.150.76.225&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;url&#34;</span><span class="p">:</span> <span class="s2">&#34;http:\/\/tj-ctfs.ftn.qq.com\/ftn_handler\/daab4b510d965064e12d4586ad5e2967167c95610b0188f29f5655fa607f83aa6f29326e8cf806300b4d2a8f11c0756601abc5698bf8df4ff4896f0865c08ccb&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;message&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;subcode&#34;</span><span class="p">:</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">);</span>
+</span></span></code></pre></div><p>url是文件的下载地址直链。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-05-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/">协议逆向</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%87%E8%83%BDpush/" class="prev" rel="prev" title="易语言程序万能进入主窗体"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>易语言程序万能进入主窗体</a>
+            <a href="/posts/ctf/%E7%9C%8B%E9%9B%AA2021-kctf%E6%98%A5%E5%AD%A3%E8%B5%9B/" class="next" rel="next" title="看雪2021 KCTF春季赛">看雪2021 KCTF春季赛<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

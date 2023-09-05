@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>vncs - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/vncs/</link>
+        <description>vncs - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sat, 22 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/vncs/" rel="self" type="application/rss+xml" /><item>
+    <title>ubuntu开启远程桌面可视化</title>
+    <link>https://fjqisba.github.io/posts/linux/ubuntu%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+    <pubDate>Sat, 22 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/linux/ubuntu%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+    <description><![CDATA[ubuntu开启远程桌面可视化 首先要让系统具备可视化桌面的能力。 安装X-Window X-Windows是一款桌面可视化系统。 执行以下命令 sudo apt-get]]></description>
+</item></channel>
+</rss>

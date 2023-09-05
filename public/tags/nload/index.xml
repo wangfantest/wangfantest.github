@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>nload - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/nload/</link>
+        <description>nload - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 10 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/nload/" rel="self" type="application/rss+xml" /><item>
+    <title>linux安装nload命令</title>
+    <link>https://fjqisba.github.io/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[安装nload工具 nload可以用来查看linux网络流量，用来实时监测网络流量和带宽使用情况。 yum install gcc yum install gcc gcc-c++ gcc-g77 sudo yum -y install ncurses sudo yum -y install ncurses-devel yum install wget #]]></description>
+</item></channel>
+</rss>

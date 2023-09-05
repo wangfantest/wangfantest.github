@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>amd64 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/amd64/</link>
+        <description>amd64 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/amd64/" rel="self" type="application/rss+xml" /><item>
+    <title>Intel指令集文档</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E6%96%87%E6%A1%A3/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E6%96%87%E6%A1%A3/</guid>
+    <description><![CDATA[​ 项目地址:zneak/x86doc: HTML representation of the Intel x86 instructions documentation ​ 作者将Intel官方的指令集PDF手册转换成了HTML文档，转换后的结果如下:htt]]></description>
+</item></channel>
+</rss>

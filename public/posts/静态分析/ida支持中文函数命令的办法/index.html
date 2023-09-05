@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>IDA7.5支持中文的办法 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="IDA7.5支持中文的办法" />
+<meta property="og:description" content="解除函数名称的限制 默认配置情况下我们是不能将函数名称修改为中文的，会提示bad character，意思就是包含非法字符，那么怎样让中文成为合" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/" />
+<meta property="article:published_time" content="2021-04-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-10T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="IDA7.5支持中文的办法"/>
+<meta name="twitter:description" content="解除函数名称的限制 默认配置情况下我们是不能将函数名称修改为中文的，会提示bad character，意思就是包含非法字符，那么怎样让中文成为合"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95/" /><link rel="prev" href="https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/" /><link rel="next" href="https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "IDA7.5支持中文的办法",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90\/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95\/"
+        },"genre": "posts","keywords": "IDA","wordcount":  490 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90\/ida%E6%94%AF%E6%8C%81%E4%B8%AD%E6%96%87%E5%87%BD%E6%95%B0%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8A%9E%E6%B3%95\/","datePublished": "2021-04-10T00:00:00+00:00","dateModified": "2021-04-10T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">IDA7.5支持中文的办法</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90/"><i class="far fa-folder fa-fw"></i>静态分析</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-10">2021-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 490 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#解除函数名称的限制">解除函数名称的限制</a></li>
+        <li><a href="#解除ida反汇编代码限制">解除IDA反汇编代码限制</a></li>
+        <li><a href="#最终效果">最终效果</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="解除函数名称的限制">解除函数名称的限制</h3>
+<p>默认配置情况下我们是不能将函数名称修改为中文的，会提示bad character，意思就是包含非法字符，那么怎样让中文成为合法的字符呢？</p>
+<p>通过在网上查找资料，这个合法字符的定义在ida.cfg文件中，我们定位到文件，搜索Block_CJK_Unified_Ideographs，如下图所示:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ida.cfg" data-lang="ida.cfg"><span class="na">// the following characters are allowed in user-defined names:</span>
+
+<span class="na">NameChars</span> <span class="o">=</span><span class="s">
+</span><span class="s">        &#34;$?@&#34;           // asm specific character
+</span><span class="s">        &#34;_0123456789&#34;
+</span><span class="s">        &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;
+</span><span class="s">        &#34;abcdefghijklmnopqrstuvwxyz&#34;,
+</span><span class="s">        // This would enable common Chinese characters in identifiers:
+</span><span class="s">        // Block_CJK_Unified_Ideographs,
+</span><span class="s">        CURRENT_CULTURE;</span>
+</code></pre></div><p>我们去掉<code>Block_CJK_Unified_Ideographs</code>这一行前面的注释，就可以给函数名字起中文了。</p>
+<h3 id="解除ida反汇编代码限制">解除IDA反汇编代码限制</h3>
+<p>虽然通过上述操作函数可以起名为中文，但是实际上使用F5功能的时候，得到的伪代码，中文函数名称却会变成下划线，如下图所示:</p>
+<p><figure><a class="lightgallery" href="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e4%b8%8b%e5%88%92%e7%ba%bf.png" title="中文变成下划线" data-thumbnail="/images/IDA支持中文的办法/中文下划线.png" data-sub-html="<h2>中文变成下划线</h2><p>中文变成下划线</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e4%b8%8b%e5%88%92%e7%ba%bf.png"
+            data-srcset="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e4%b8%8b%e5%88%92%e7%ba%bf.png, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e4%b8%8b%e5%88%92%e7%ba%bf.png 1.5x, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e4%b8%8b%e5%88%92%e7%ba%bf.png 2x"
+            data-sizes="auto"
+            alt="/images/IDA支持中文的办法/中文下划线.png" />
+    </a><figcaption class="image-caption">中文变成下划线</figcaption>
+    </figure></p>
+<p>通过对IDA进行逆向得知，原来hexray在生成伪代码的时候会调用一个<code>calc_c_cpp_name</code>函数，该函数会试图针对C/C++的函数名称进行优化，结果却误伤中文字符，我们将此处代码给NOP掉，就可以了。
+<figure><a class="lightgallery" href="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e5%90%88%e6%b3%95%e5%8c%96%e5%90%8d%e7%a7%b0.png" title="合法化名称" data-thumbnail="/images/IDA支持中文的办法/合法化名称.png" data-sub-html="<h2>合法化名称</h2><p>合法化名称</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e5%90%88%e6%b3%95%e5%8c%96%e5%90%8d%e7%a7%b0.png"
+            data-srcset="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e5%90%88%e6%b3%95%e5%8c%96%e5%90%8d%e7%a7%b0.png, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e5%90%88%e6%b3%95%e5%8c%96%e5%90%8d%e7%a7%b0.png 1.5x, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e5%90%88%e6%b3%95%e5%8c%96%e5%90%8d%e7%a7%b0.png 2x"
+            data-sizes="auto"
+            alt="/images/IDA支持中文的办法/合法化名称.png" />
+    </a><figcaption class="image-caption">合法化名称</figcaption>
+    </figure></p>
+<h3 id="最终效果">最终效果</h3>
+<p>我已制作<a href="https://github.com/fjxisba/GithubDropBox/files/6289179/IDA.7.5.SP3.zip" target="_blank" rel="noopener noreffer">Patch好的DLL</a>，替换后效果如下:</p>
+<p><figure><a class="lightgallery" href="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e5%87%bd%e6%95%b0.png" title="中文函数" data-thumbnail="/images/IDA支持中文的办法/中文函数.png" data-sub-html="<h2>中文函数</h2><p>中文函数</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e5%87%bd%e6%95%b0.png"
+            data-srcset="/images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e5%87%bd%e6%95%b0.png, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e5%87%bd%e6%95%b0.png 1.5x, /images/IDA%e6%94%af%e6%8c%81%e4%b8%ad%e6%96%87%e7%9a%84%e5%8a%9e%e6%b3%95/%e4%b8%ad%e6%96%87%e5%87%bd%e6%95%b0.png 2x"
+            data-sizes="auto"
+            alt="/images/IDA支持中文的办法/中文函数.png" />
+    </a><figcaption class="image-caption">中文函数</figcaption>
+    </figure></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-10</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ida/">IDA</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/" class="prev" rel="prev" title="QT组件之QTableWidget"><i class="fas fa-angle-left fa-fw"></i>QT组件之QTableWidget</a>
+            <a href="/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86/" class="next" rel="next" title="C&#43;&#43;常用知识">C&#43;&#43;常用知识<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

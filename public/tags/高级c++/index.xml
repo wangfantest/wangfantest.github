@@ -1,0 +1,57 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>高级C&#43;&#43; - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E9%AB%98%E7%BA%A7c&#43;&#43;/</link>
+        <description>高级C&#43;&#43; - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 14 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E9%AB%98%E7%BA%A7c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>禁止程序多开</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E7%A6%81%E6%AD%A2%E5%A4%9A%E5%BC%80/</link>
+    <pubDate>Thu, 14 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E7%A6%81%E6%AD%A2%E5%A4%9A%E5%BC%80/</guid>
+    <description><![CDATA[​ 禁止程序多开其实有两种，一种是启动A1进程，再启动A2进程，A2进程自行退出；另外一种是启动A1进程后，再启动A2进程，A1进程自行退出。]]></description>
+</item><item>
+    <title>浅谈TCP粘包的理解</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+    <pubDate>Mon, 11 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+    <description><![CDATA[​ 在开发TCP有关的程序的时候，我们就会遇到粘包的这个单词了。 ​ 首先要知道TCP是&quot;完美的&quot;，久经考验的TCP协议能够确]]></description>
+</item><item>
+    <title>Windows应用开发</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/windows%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Sat, 09 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/windows%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[Windows创建计划任务 schtasks create | Microsoft Docs]]></description>
+</item><item>
+    <title>unique_ptr使用注意事项</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/unique_ptr%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+    <pubDate>Sat, 25 Sep 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/unique_ptr%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+    <description><![CDATA[​ unique_ptr指针的出现是为了解决指针释放的问题，在将指针升级为unique_ptr指针的时候，需要注意这二者之间的区别。 在C++项]]></description>
+</item><item>
+    <title>C&#43;&#43;中的volatile关键字</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E4%B8%AD%E7%9A%84volatile%E5%85%B3%E9%94%AE%E5%AD%97/</link>
+    <pubDate>Tue, 17 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E4%B8%AD%E7%9A%84volatile%E5%85%B3%E9%94%AE%E5%AD%97/</guid>
+    <description><![CDATA[​ volatile单词意思为易变的，这里作为关键字是用来提示编译器它后面所定义的变量随时有可能改变。具体看下面这个源码例子: void test() { int a=2; while(1){ if(a==1){ break;]]></description>
+</item><item>
+    <title>C&#43;&#43;工厂类</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%9D%99%E6%80%81%E7%B1%BB/</link>
+    <pubDate>Mon, 19 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%9D%99%E6%80%81%E7%B1%BB/</guid>
+    <description><![CDATA[​ 虽然很久以前在还原C++代码的时候就已经接触到工厂类这个概念了，但是其实由于懒得理解，所以一直处于一知半解的状态，直到我今天写代码遇到了一]]></description>
+</item><item>
+    <title>C&#43;&#43;限制堆和栈的对象空间分配</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%99%90%E5%88%B6%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D/</link>
+    <pubDate>Sat, 06 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%99%90%E5%88%B6%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D/</guid>
+    <description><![CDATA[一般情况下，创建一个类对象，可以在栈或者堆中分配空间。 比如，这样编写代码，就是在栈中建立类对象 int main() { A Obj; } 这句代码对于编译器来说可以转换为近]]></description>
+</item></channel>
+</rss>

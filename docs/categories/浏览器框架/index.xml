@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>浏览器框架 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</link>
+        <description>浏览器框架 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/" rel="self" type="application/rss+xml" /><item>
+    <title>CEF浏览器框架</title>
+    <link>https://fjqisba.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</link>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</guid>
+    <description><![CDATA[Cef浏览器框架 1、Chromium不支持需要身份验证的SOCK5代理。 话说我试了几个小时，搜遍全网的资料，最后才得出这么一个结论😭 https://bugs.chromium.org/p/chromium/issues/detail?id=256785 浏览器]]></description>
+</item>
+</channel>
+</rss>

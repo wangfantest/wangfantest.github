@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Go语言使用QT界面库 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="Go语言使用QT界面库" />
+<meta property="og:description" content="Go语言使用QT界面库 Go语言要使用QT库的话，装起来也是比较麻烦 项目地址:https://github.com/therecipe/qt 文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-05T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Go语言使用QT界面库"/>
+<meta name="twitter:description" content="Go语言使用QT界面库 Go语言要使用QT库的话，装起来也是比较麻烦 项目地址:https://github.com/therecipe/qt 文"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/" /><link rel="prev" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" /><link rel="next" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go语言使用QT界面库",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/go%E8%AF%AD%E8%A8%80\/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93\/"
+        },"genre": "posts","keywords": "Go, GUI, QT","wordcount":  605 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/go%E8%AF%AD%E8%A8%80\/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93\/","datePublished": "2022-04-05T00:00:00+00:00","dateModified": "2022-04-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Go语言使用QT界面库</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/go%E8%AF%AD%E8%A8%80/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Go语言</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-05">2022-04-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 605 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#go语言使用qt界面库">Go语言使用QT界面库</a></li>
+    <li><a href="#有的时候编译工程不通过">有的时候编译工程不通过</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="go语言使用qt界面库">Go语言使用QT界面库</h2>
+<p>Go语言要使用QT库的话，装起来也是比较麻烦</p>
+<p>项目地址:https://github.com/therecipe/qt</p>
+<p>文档地址:https://github.com/therecipe/examples</p>
+<p>1、首先需要安装QT库，根据文档介绍来看，目前项目使用的版本是5.13.0，推荐保持一致，不然可能会出问题。</p>
+<p><a href="https://download.qt.io/archive/qt/5.13/5.13.0" target="_blank" rel="noopener noreffer">https://download.qt.io/archive/qt/5.13/5.13.0</a>
+</p>
+<p>安装的时候需要参考issue:https://github.com/therecipe/qt/issues/939，也就是在安装选项中需要选择<code>Qt Script (Deprecated)</code>这一选项，不然后面会出错。</p>
+<p>2、下载完成后，安装Mingw64位版本，对应编译出来的64位Go语言程序。</p>
+<p>3、将Go语言bin目录添加到path环境变量，在cmd中敲一下go version，看看能不能用就是了。</p>
+<p>4、安装Go语言版本的QT库，命令如下，可能会执行比较久的时间。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">go</span> <span class="n">get</span> <span class="n">-u</span> <span class="n">-v</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">therecipe</span><span class="p">/</span><span class="n">qt</span><span class="p">/</span><span class="n">cmd</span><span class="p">/</span><span class="n">qtsetup</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="n">get</span> <span class="n">-u</span> <span class="n">-v</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">therecipe</span><span class="p">/</span><span class="n">qt</span><span class="p">/</span><span class="n">cmd</span><span class="p">/...</span>
+</span></span></code></pre></div><p>5、配置好环境变量</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">SET </span><span class="n">PATH</span><span class="p">=</span><span class="k">%</span><span class="n">PATH</span><span class="p">%;</span><span class="k">%</span><span class="n">GOPATH</span><span class="p">%\</span><span class="n">bin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="n">配置Qt目录和Qt版本</span>
+</span></span><span class="line"><span class="cl"><span class="nb">SET </span><span class="n">QT_DIR</span><span class="p">=</span><span class="n">D:</span><span class="p">\</span><span class="n">Qt</span><span class="p">\</span><span class="n">Qt5</span><span class="p">.</span><span class="n">13</span><span class="p">.</span><span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="nb">SET </span><span class="n">QT_API</span><span class="p">=</span><span class="n">5</span><span class="p">.</span><span class="n">13</span><span class="p">.</span><span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="nb">SET </span><span class="n">QT_VERSION_MAJOR</span><span class="p">=</span><span class="n">5</span><span class="p">.</span><span class="n">13</span><span class="p">.</span><span class="n">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="n">编译32位程序用386</span>
+</span></span><span class="line"><span class="cl"><span class="nb">SET </span><span class="n">GOARCH</span><span class="p">=</span><span class="n">amd64</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="n">默认使用Mingw编译</span><span class="err">，</span><span class="n">使用MSVC编译的话开启下面的选项</span><span class="err">，</span><span class="n">qtsetup可以运行</span><span class="err">，</span><span class="n">但是后面qtdeploy会报cgo相关错误</span>
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="nb">SET </span><span class="n">QT_MSVC</span><span class="p">=</span><span class="n">true</span>
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="nb">SET </span><span class="n">PATH</span><span class="p">=</span><span class="k">%</span><span class="n">PATH</span><span class="p">%;</span><span class="n">C:</span><span class="p">\</span><span class="n">Program</span> <span class="n">Files</span> <span class="p">(</span><span class="n">x86</span><span class="p">)\</span><span class="n">Microsoft</span> <span class="n">Visual</span> <span class="n">Studio</span><span class="p">\</span><span class="n">2017</span><span class="p">\</span><span class="n">Community</span><span class="p">\</span><span class="n">VC</span><span class="p">\</span><span class="n">Auxiliary</span><span class="p">\</span><span class="n">Build</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">REM</span> <span class="n">call</span> <span class="n">vcvarsall</span><span class="p">.</span><span class="n">bat</span> <span class="n">amd64_x86</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">qtsetup</span>
+</span></span></code></pre></div><p>6、编译工程的时候，使用以下命令行</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">qtdeploy build
+</span></span></code></pre></div><h2 id="有的时候编译工程不通过">有的时候编译工程不通过</h2>
+<p>使用qtdeploy命令编译工程，有的时候会失败。</p>
+<p>这个时候可以试试先运行qmoc，再运行qtdeploy，玄学。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/gui/">GUI</a>,&nbsp;<a href="/tags/qt/">QT</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" class="prev" rel="prev" title="Go语言编写加密算法"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Go语言编写加密算法</a>
+            <a href="/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="next" rel="next" title="RetDec反编译器学习">RetDec反编译器学习<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

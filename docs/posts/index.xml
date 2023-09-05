@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>所有文章 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/posts/</link>
+        <description>所有文章 | fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>记一次修复Ghidra反编译混淆代码的Bug经历</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86/</link>
+    <pubDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86/</guid>
+    <description><![CDATA[记一次修复Ghidra反编译混淆代码的Bug经历 最近在尝试使用Ghidra来对混淆代码进行反编译，然而在反编译一段代码的时候出现了问题，这里]]></description>
+</item>
+<item>
+    <title>游戏评测</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/</link>
+    <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/</guid>
+    <description><![CDATA[休闲类游戏 Raft 生存部分刚开始设计得挺有意思，但是后期内容就严重不足了，无法支撑这么久的故事剧情。还是只能当作一个小游戏来消遣消遣。 卡牌策略游戏]]></description>
+</item>
+<item>
+    <title>Ghidra反编译器(二)</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C/</link>
+    <pubDate>Fri, 02 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C/</guid>
+    <description><![CDATA[关于Sleigh指令转换器 Sleigh::oneInstruction负责将二进制转换为反汇编或者PCode指令。 这是一个转换器，通过递归查]]></description>
+</item>
+<item>
+    <title>Windows搭建Python源码编译环境</title>
+    <link>https://fjqisba.github.io/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Fri, 05 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[Windows搭建Python源码编译环境 1、下载源码 https://www.python.org/downloads/release/python-273/ 下载Source release版本就行了 2、运行PCBuild目录下的get_ext]]></description>
+</item>
+<item>
+    <title>godot开发入门</title>
+    <link>https://fjqisba.github.io/posts/godot%E5%BC%80%E5%8F%91/godot%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Wed, 08 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/godot%E5%BC%80%E5%8F%91/godot%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[GoDot游戏开发入门 Github地址:https://github.com/godotengine/godot 官方入门文档:https:/]]></description>
+</item>
+<item>
+    <title>C&#43;&#43;编译标志位大全</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E7%BC%96%E8%AF%91%E6%A0%87%E5%BF%97%E4%BD%8D%E5%A4%A7%E5%85%A8/</link>
+    <pubDate>Tue, 13 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E7%BC%96%E8%AF%91%E6%A0%87%E5%BF%97%E4%BD%8D%E5%A4%A7%E5%85%A8/</guid>
+    <description><![CDATA[有如下标志位: 常规 启用字符串池(是|否)，/GF /GF- 启用最小重新生成(是|否)，/Gm Gm- 启用C++异常(是)，/EHsc 启用C++异常(是，但]]></description>
+</item>
+<item>
+    <title>Dart学习</title>
+    <link>https://fjqisba.github.io/posts/%E5%89%8D%E7%AB%AF/dart%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%89%8D%E7%AB%AF/dart%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[官网:https://dart.dev/]]></description>
+</item>
+<item>
+    <title>域名查询</title>
+    <link>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E6%9F%A5%E8%AF%A2/</link>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E6%9F%A5%E8%AF%A2/</guid>
+    <description><![CDATA[域名备案查询服务 https://whois.xinnet.com 简单易用，缺点是数据库有点垃圾，查不到域名的信息。 http://whois.chinaz.com/ 数据库还是比较弱。 https://shop.whois.com/ 数据库很强，加密也很强 http://www.jucha.com/whois/]]></description>
+</item>
+<item>
+    <title>Objection学习</title>
+    <link>https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/objection%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Tue, 22 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/objection%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[Objection学习 安装 pip3 install -U objection 注入 常规注入 objection -g zs.miaohui.xin explore 启动注入 objection -g zs.miaohui.xin explore --startup-command &#34;android hooking watch class xxx&#34; 探索 打印内存中的所有类 android hooking list classes 搜索类名 android hooking search classes &lt;name&gt; 搜索方法 android]]></description>
+</item>
+<item>
+    <title>C#语言菜鸟系列</title>
+    <link>https://fjqisba.github.io/posts/csharp/csharp%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%B8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Sun, 20 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/csharp/csharp%E8%AF%AD%E8%A8%80%E8%8F%9C%E9%B8%9F%E7%B3%BB%E5%88%97%E4%B8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[1、关于函数参数的传值和传引用 不加ref关键字，默认都是传值哦。]]></description>
+</item>
+</channel>
+</rss>

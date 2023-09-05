@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>解析易语言窗口控件资源 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="解析易语言窗口控件资源" />
+<meta property="og:description" content="基础介绍 通过寻找易语言静态编译的程序规律，我们可以找到一处结构体，寻找的特征码是50 64 89 25 00 00 00 00 81 EC AC 01 00 00 53 56 57，找到后这个结构体大概" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E8%A7%A3%E6%9E%90%E6%98%93%E8%AF%AD%E8%A8%80%E7%AA%97%E5%8F%A3%E6%8E%A7%E4%BB%B6%E8%B5%84%E6%BA%90/" />
+<meta property="article:published_time" content="2021-04-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="解析易语言窗口控件资源"/>
+<meta name="twitter:description" content="基础介绍 通过寻找易语言静态编译的程序规律，我们可以找到一处结构体，寻找的特征码是50 64 89 25 00 00 00 00 81 EC AC 01 00 00 53 56 57，找到后这个结构体大概"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E8%A7%A3%E6%9E%90%E6%98%93%E8%AF%AD%E8%A8%80%E7%AA%97%E5%8F%A3%E6%8E%A7%E4%BB%B6%E8%B5%84%E6%BA%90/" /><link rel="prev" href="https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%9D%99%E6%80%81%E7%B1%BB/" /><link rel="next" href="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%87%E8%83%BDpush/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "解析易语言窗口控件资源",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E6%98%93%E8%AF%AD%E8%A8%80\/%E8%A7%A3%E6%9E%90%E6%98%93%E8%AF%AD%E8%A8%80%E7%AA%97%E5%8F%A3%E6%8E%A7%E4%BB%B6%E8%B5%84%E6%BA%90\/"
+        },"genre": "posts","keywords": "IDA","wordcount":  1485 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E6%98%93%E8%AF%AD%E8%A8%80\/%E8%A7%A3%E6%9E%90%E6%98%93%E8%AF%AD%E8%A8%80%E7%AA%97%E5%8F%A3%E6%8E%A7%E4%BB%B6%E8%B5%84%E6%BA%90\/","datePublished": "2021-04-27T00:00:00+00:00","dateModified": "2021-04-27T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">解析易语言窗口控件资源</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%98%93%E8%AF%AD%E8%A8%80%E9%80%86%E5%90%91/"><i class="far fa-folder fa-fw"></i>易语言逆向</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-27">2021-04-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1485 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基础介绍">基础介绍</a></li>
+        <li><a href="#控件类型">控件类型</a></li>
+        <li><a href="#控件属性">控件属性</a></li>
+        <li><a href="#控件事件">控件事件</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="基础介绍">基础介绍</h3>
+<p>通过寻找易语言静态编译的程序规律，我们可以找到一处结构体，寻找的特征码是<code>50 64 89 25 00 00 00 00 81 EC AC 01 00 00 53 56 57</code>，找到后这个结构体大概是下面这个样子:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">struct</span> <span class="nc">EHead</span>
+<span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dwMagic</span><span class="p">;</span>       <span class="c1">//未知,值固定为3
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">szNone2</span><span class="p">;</span>       <span class="c1">//未知,值固定为0
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">szNone3</span><span class="p">;</span>       <span class="c1">//未知,好像是个随机数,修改不影响程序
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpStartCode</span><span class="p">;</span>   <span class="c1">//用户代码起始地址,不可修改
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpEString</span><span class="p">;</span>     <span class="c1">//常量资源,如果没有常量资源,则为0
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dwEStringSize</span><span class="p">;</span> <span class="c1">//常量资源大小,如果没有常量资源,则为0
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpEWindow</span><span class="p">;</span>     <span class="c1">//创建组件信息
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dwEWindowSize</span><span class="p">;</span> <span class="c1">//创建组件信息大小
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dwLibNum</span><span class="p">;</span>      <span class="c1">//支持库数量
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpLibEntry</span><span class="p">;</span>    <span class="c1">//支持库信息入口
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">dwApiCount</span><span class="p">;</span>    <span class="c1">//Api数量
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpModuleName</span><span class="p">;</span>  <span class="c1">//指向模块名称
+</span><span class="c1"></span>	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">lpApiName</span><span class="p">;</span>     <span class="c1">//指向Api名称
+</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>可以看到这些结构体包含着易语言程序中的很多重要数据，今天我们要研究的是界面资源部分。</p>
+<p>易语言所有的GUI信息都放在<code>lpEWindow</code>这个指针所指向的位置，<code>dwEWindowSize</code>则为信息的总大小，通过对这个信息进行解析，理论上我们可以还原与易语言IDE中几乎一模一样的控件设计。</p>
+<p>具体解析规则，我就懒得介绍了，请自行参考<a href="https://github.com/fjqisba/E-Decompiler" target="_blank" rel="noopener noreffer">E-Decompiler</a>源码中的<code>GuiParser::ParseGUIResource</code>函数。通过不断尝试进行拆解还原，我们最终大概可以看到这样一个结构:</p>
+<p><figure><a class="lightgallery" href="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e7%aa%97%e5%8f%a3%e7%bb%93%e6%9e%84.png" title="窗口结构" data-thumbnail="/images/易语言窗口/窗口结构.png" data-sub-html="<h2>窗口结构</h2><p>窗口结构</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e7%aa%97%e5%8f%a3%e7%bb%93%e6%9e%84.png"
+            data-srcset="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e7%aa%97%e5%8f%a3%e7%bb%93%e6%9e%84.png, /images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e7%aa%97%e5%8f%a3%e7%bb%93%e6%9e%84.png 1.5x, /images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e7%aa%97%e5%8f%a3%e7%bb%93%e6%9e%84.png 2x"
+            data-sizes="auto"
+            alt="/images/易语言窗口/窗口结构.png" />
+    </a><figcaption class="image-caption">窗口结构</figcaption>
+    </figure></p>
+<p>每个窗口都是一棵树，窗口内的控件则为这个树的子节点，不难理解，通过窗口ID -&gt; 控件ID，我们就能对应到每个控件了。其中值得说明的是窗口本身也属于控件，每个窗口的第一个控件就是窗口控件。</p>
+<h3 id="控件类型">控件类型</h3>
+<p><figure><a class="lightgallery" href="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e6%8e%a7%e4%bb%b6%e7%b1%bb%e5%9e%8b.png" title="控件类型" data-thumbnail="/images/易语言窗口/控件类型.png" data-sub-html="<h2>控件类型</h2><p>控件类型</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e6%8e%a7%e4%bb%b6%e7%b1%bb%e5%9e%8b.png"
+            data-srcset="/images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e6%8e%a7%e4%bb%b6%e7%b1%bb%e5%9e%8b.png, /images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e6%8e%a7%e4%bb%b6%e7%b1%bb%e5%9e%8b.png 1.5x, /images/%e6%98%93%e8%af%ad%e8%a8%80%e7%aa%97%e5%8f%a3/%e6%8e%a7%e4%bb%b6%e7%b1%bb%e5%9e%8b.png 2x"
+            data-sizes="auto"
+            alt="/images/易语言窗口/控件类型.png" />
+    </a><figcaption class="image-caption">控件类型</figcaption>
+    </figure></p>
+<p>在上图中我们可以看到，<code>窗口.取窗口句柄()</code>这样一个命令的参数中，0x52010001表示控件所属窗口ID，0x6010000表示控件ID，而0x10001这个参数则表示控件的类型ID。</p>
+<p>每个控件都有一个控件类型ID，比如窗口的控件类型ID是0x10001，按钮的控件类型是0x1000B。</p>
+<p>这个控件类型ID是有规律的，因为易语言有一个支持库机制，我们不妨看看易语言核心支持库的介绍:</p>
+<blockquote>
+<p>提供了51种库定义<strong>数据类型</strong>，提供了686种命令，提供了335个库定义常量</p>
+</blockquote>
+<p>而编辑框、按钮这些控件就属于核心支持库中的<strong>数据类型</strong>的一部分，控件ID中的高四位对应的是控件所属支持库在易语言程序中的加载顺序，低四位对应的则是控件在所属支持库中的数据类型数组中的下标，因此窗口控件ID0x10001表示的含义其实是程序所加载的第一个支持库中的第一种控件。</p>
+<p>由于系统支持库默认最先加载，所以核心支持库中的控件的高四位必定是1。</p>
+<h3 id="控件属性">控件属性</h3>
+<p>在易语言中，属性可以分<strong>基本属性</strong>和<strong>附加属性</strong>两种，像<code>左边</code>、<code>顶边</code>、<code>宽度</code>、<code>高度</code>这些几乎每个控件都有的属性就属于基本属性了，这些字段每个控件排列顺序、排列方式都是一样的，我们可以通用解析。基础属性之后跟着的则是每个控件独特的附加属性，以序列化的形式存储，因此如果我们想要把这些属性还原出来，就必须对每个控件的属性进行反序列化解析。</p>
+<p>另外，易语言为了节省空间，控件的附加属性都有一个默认值，即如果控件在IDE中的附加属性未进行任何改动，那么控件的信息结构中，附加属性字段占用大小为0。</p>
+<h3 id="控件事件">控件事件</h3>
+<p>事实上，控件的事件属于控件<strong>基本属性</strong>的一部分，事件的结构体很简单:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">struct</span> <span class="nc">ControlEvent</span>
+<span class="p">{</span>
+	<span class="kt">int</span> <span class="n">EventIndex</span><span class="p">;</span>          <span class="c1">//事件索引
+</span><span class="c1"></span>	<span class="n">uint32</span> <span class="n">EventOffset</span><span class="p">;</span>      <span class="c1">//事件地址便宜
+</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p><code>EventIndex</code>表示事件类型，<code>EventOffset</code>值等于事件地址相对于<code>用户代码起始地址</code>的偏移。</p>
+<p>每个控件都有自己的一张事件列表，例如0表示<code>窗口_创建完毕</code>事件，1表示<code>窗口_可否被关闭</code>事件。</p>
+<h3 id="总结">总结</h3>
+<p>其实还有一些细节，像子控件、父控件，菜单控件之类的，由于作者太懒也没有进行介绍，本文只是一个科普贴。。。。。。</p>
+<p>啥也不说了，都在代码里。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-27</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ida/">IDA</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/c&#43;&#43;%E9%9D%99%E6%80%81%E7%B1%BB/" class="prev" rel="prev" title="C&#43;&#43;工厂类"><i class="fas fa-angle-left fa-fw"></i>C&#43;&#43;工厂类</a>
+            <a href="/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%87%E8%83%BDpush/" class="next" rel="next" title="易语言程序万能进入主窗体">易语言程序万能进入主窗体<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

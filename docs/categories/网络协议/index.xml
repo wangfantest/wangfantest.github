@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>网络协议 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</link>
+        <description>网络协议 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 09 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" rel="self" type="application/rss+xml" /><item>
+    <title>OpenVPN研究</title>
+    <link>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/openvpn%E7%A0%94%E7%A9%B6/</link>
+    <pubDate>Thu, 09 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/openvpn%E7%A0%94%E7%A9%B6/</guid>
+    <description><![CDATA[前言 本来想研究OpenVPN如何抓取流量的，可惜没研究出啥成果，备份一下资料而已。 OpenVpn 1、下载对应版本的代码 wget https://swupdate.openvpn.org/community/releases/openvpn-2.4.9.tar.gz 2、安装lzo压缩库，不同的操]]></description>
+</item>
+<item>
+    <title>Http代理协议</title>
+    <link>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/</link>
+    <pubDate>Wed, 08 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/http%E5%8D%8F%E8%AE%AE/</guid>
+    <description><![CDATA[HTTP协议 首先从最高层，应用层的角度去理解请求: 1、客户端向目标服务端发送请求信息 POST http://api.live.bilibili.com/client/v1/Ip/getInfoNew HTTP/1.1 Host: api.live.bilibili.com User-Agent: python-requests/2.26.0 Accept-Encoding: gzip, deflate Accept: */* Connection: keep-alive Content-Length: 8 postData 有请求类型，请求地址，]]></description>
+</item>
+</channel>
+</rss>

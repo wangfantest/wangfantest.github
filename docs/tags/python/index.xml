@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Python - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/python/</link>
+        <description>Python - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Fri, 05 May 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/python/" rel="self" type="application/rss+xml" /><item>
+    <title>Windows搭建Python源码编译环境</title>
+    <link>https://fjqisba.github.io/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Fri, 05 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[Windows搭建Python源码编译环境 1、下载源码 https://www.python.org/downloads/release/python-273/ 下载Source release版本就行了 2、运行PCBuild目录下的get_ext]]></description>
+</item>
+</channel>
+</rss>

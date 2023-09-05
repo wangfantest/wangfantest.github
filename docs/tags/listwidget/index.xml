@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ListWidget - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/listwidget/</link>
+        <description>ListWidget - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 15 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/listwidget/" rel="self" type="application/rss+xml" /><item>
+    <title>QT组件之QListWidget</title>
+    <link>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/</link>
+    <pubDate>Thu, 15 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/</guid>
+    <description><![CDATA[在QT的开发中，免不了要用到列表(QListWidget)这个控件。 一、初始化表格 信号大全 QListWidget控件的信号 void itemPressed(QListWidgetItem *item); void itemClicked(QListWidgetItem *item); void itemDoubleClicked(QListWidgetItem *item);]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>API - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/api/</link>
+        <description>API - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/api/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言调用Windows Api</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8windows-api/</link>
+    <pubDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8windows-api/</guid>
+    <description><![CDATA[关于DLL的加载 调用消息框示例 func callMsgBox() { hUser32,_ := syscall.LoadDLL(&#34;user32.dll&#34;) callMessageBox, _ := hUser32.FindProc(&#34;MessageBoxW&#34;) text := uintptr(unsafe.Pointer(syscall.StringToUTF1]]></description>
+</item>
+</channel>
+</rss>

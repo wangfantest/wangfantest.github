@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TCP - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/tcp/</link>
+        <description>TCP - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 11 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/tcp/" rel="self" type="application/rss+xml" /><item>
+    <title>浅谈TCP粘包的理解</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+    <pubDate>Mon, 11 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E6%B5%85%E8%B0%88tcp%E7%B2%98%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+    <description><![CDATA[​ 在开发TCP有关的程序的时候，我们就会遇到粘包的这个单词了。 ​ 首先要知道TCP是&quot;完美的&quot;，久经考验的TCP协议能够确]]></description>
+</item><item>
+    <title>TCP通讯库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/</link>
+    <pubDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/</guid>
+    <description><![CDATA[brynet 项目地址:https://github.com/Microsoft/vcpkg/tree/master/ports/brynet 这个库的优]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TableWidget - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/tablewidget/</link>
+        <description>TableWidget - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 05 Apr 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/tablewidget/" rel="self" type="application/rss+xml" /><item>
+    <title>QT组件之QTableWidget</title>
+    <link>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/</link>
+    <pubDate>Mon, 05 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqtablewidget/</guid>
+    <description><![CDATA[在QT的开发中，免不了要用到表格(QTableWidget)这个控件。 一、初始化表格 设置基本属性 ui.FileTableWidget-&gt;setColumnCount(2); //设置列数 ui.FileTableWidget-&gt;setColumnWidth(0, 100); //设置第一列宽度 ui.FileTableWidget-&gt;setColumnWidth(1, 300); //]]></description>
+</item>
+</channel>
+</rss>

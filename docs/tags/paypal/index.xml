@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>paypal - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/paypal/</link>
+        <description>paypal - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/paypal/" rel="self" type="application/rss+xml" /><item>
+    <title>paypal开通支付</title>
+    <link>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98/</guid>
+    <description><![CDATA[paypal开通支付 paypal是国外的一套支付服务系统，基于web来实现。 官方文档:https://developer.paypal.co]]></description>
+</item>
+</channel>
+</rss>

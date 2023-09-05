@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>协议逆向 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/</link>
+        <description>协议逆向 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/" rel="self" type="application/rss+xml" /><item>
+    <title>QQ群查询信息协议</title>
+    <link>https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E4%BF%A1%E6%81%AF%E5%8D%8F%E8%AE%AE/</link>
+    <pubDate>Fri, 23 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E4%BF%A1%E6%81%AF%E5%8D%8F%E8%AE%AE/</guid>
+    <description><![CDATA[利用QQ群的查询接口来获取QQ群的一些信息。接口: https://qun.qq.com/cgi-bin/group_search/pc_group_search post数据: 传递值 说明 选项 keyword 关键字，可为QQ群号,QQ群名称 必填 wantnum 想要查询的个数 必填 from]]></description>
+</item>
+<item>
+    <title>QQ群文件协议</title>
+    <link>https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/</link>
+    <pubDate>Sun, 09 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/qq/qq%E7%BE%A4%E6%96%87%E4%BB%B6%E5%8D%8F%E8%AE%AE/</guid>
+    <description><![CDATA[因为工作需要，需要对QQ群文件协议进行逆向分析。 1.分析准备流程 首先我们要知道QQ群文件的静态页面网址是https://pan.qun.qq]]></description>
+</item>
+</channel>
+</rss>

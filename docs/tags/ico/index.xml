@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ICO - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/ico/</link>
+        <description>ICO - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/ico/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言程序添加图标</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</link>
+    <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</guid>
+    <description><![CDATA[Go语言程序添加图标 1、下载rsrc工具 go get github.com/akavel/rsrc 2、生成程序描述文件ico.manifest &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt; &lt;assembly xmlns=&#34;urn:schemas-microsoft-com:asm.v1&#34; manifestVersion=&#34;1.0&#34;&gt; &lt;assemblyIdentity version=&#34;1.0.0.0&#34; processorArchitecture=&#34;x86&#34; name=&#34;controls&#34; type=&#34;win32&#34; &gt;&lt;/assemblyIdentity&gt; &lt;dependency&gt; &lt;dependentAssembly&gt; &lt;assemblyIdentity type=&#34;win32&#34; name=&#34;Microsoft.Windows.Common-Controls&#34; version=&#34;6.0.0.0&#34; processorArchitecture=&#34;*&#34; publicKeyToken=&#34;6595b64144ccf1df&#34; language=&#34;*&#34; &gt;&lt;/assemblyIdentity&gt; &lt;/dependentAssembly&gt; &lt;/dependency&gt;]]></description>
+</item>
+</channel>
+</rss>

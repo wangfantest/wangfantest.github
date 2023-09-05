@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Decompiler - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/decompiler/</link>
+        <description>Decompiler - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 24 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/decompiler/" rel="self" type="application/rss+xml" /><item>
+    <title>DLL2C试用</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/</link>
+    <pubDate>Sun, 24 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/</guid>
+    <description><![CDATA[今天看到一款产品，据说能将DLL或者EXE转换为可编译的C/C++代码，官网地址如下: https://www.dll-decompiler.cn/dll2c.html 官方介绍如下: DLL to C 是一个能够把所有DLL文件和部分]]></description>
+</item>
+</channel>
+</rss>

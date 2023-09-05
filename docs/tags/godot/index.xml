@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>godot - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/godot/</link>
+        <description>godot - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 08 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/godot/" rel="self" type="application/rss+xml" /><item>
+    <title>godot开发入门</title>
+    <link>https://fjqisba.github.io/posts/godot%E5%BC%80%E5%8F%91/godot%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Wed, 08 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/godot%E5%BC%80%E5%8F%91/godot%E5%BC%80%E5%8F%91%E6%96%B0%E6%89%8B%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[GoDot游戏开发入门 Github地址:https://github.com/godotengine/godot 官方入门文档:https:/]]></description>
+</item>
+</channel>
+</rss>

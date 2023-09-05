@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>html - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/html/</link>
+        <description>html - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 25 May 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/html/" rel="self" type="application/rss+xml" /><item>
+    <title>html查询语法</title>
+    <link>https://fjqisba.github.io/posts/%E7%88%AC%E8%99%AB/html%E6%9F%A5%E8%AF%A2%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Wed, 25 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E7%88%AC%E8%99%AB/html%E6%9F%A5%E8%AF%A2%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[解析Html 1、获取第一个元素 document.querySelector(&#34;p&#34;); document.querySelector(&#34;body&#34;); 2、获取第一个类为example的元素 document.querySelector(&#34;.example&#34;); 3、选中 data-foo-bar 属性等于 someval 的元素 document.querySelectorAll(&#39;[data-foo-bar=&#34;someval&#34;]&#39;);]]></description>
+</item>
+</channel>
+</rss>

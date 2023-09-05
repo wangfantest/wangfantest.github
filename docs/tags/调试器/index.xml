@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>调试器 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E8%B0%83%E8%AF%95%E5%99%A8/</link>
+        <description>调试器 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Fri, 15 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E8%B0%83%E8%AF%95%E5%99%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>GDB调试</title>
+    <link>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/gdb%E8%B0%83%E8%AF%95/</link>
+    <pubDate>Fri, 15 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/gdb%E8%B0%83%E8%AF%95/</guid>
+    <description><![CDATA[GDB调试 命令 解释 attach 进程PID 附加进程调试 next 单步步过,简写n step 单布步入,简写s finish 结束当前函数，返回到函数调用点 print 打印地址以及值，简写p info breakpoints 查]]></description>
+</item>
+</channel>
+</rss>

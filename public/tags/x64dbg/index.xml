@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>x64Dbg - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/x64dbg/</link>
+        <description>x64Dbg - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sat, 30 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/x64dbg/" rel="self" type="application/rss+xml" /><item>
+    <title>x64Dbg源码阅读记录</title>
+    <link>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Sat, 30 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[x64Dbg是如何绘制程序代码流程图的 首先在C++代码src\dbg\analysis\advancedanalysis.cpp有与代码流程]]></description>
+</item><item>
+    <title>x64Dbg插件开发相关</title>
+    <link>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/</link>
+    <pubDate>Sat, 16 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%9B%B8%E5%85%B3/</guid>
+    <description><![CDATA[x32gui.dll 此模块是调试器界面，核心函数为processMessage，处理着所有的界面消息。 void* Bridge::processMessage(GUIMSG type, void* param1, void* param2) GUI模块 SelectionGet bool SelectionGet(Window window, duint* start, duint* end); 获取指定窗口的光]]></description>
+</item><item>
+    <title>x64Dbg开启补全功能</title>
+    <link>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E5%BC%80%E5%90%AF%E8%A1%A5%E5%85%A8%E5%8A%9F%E8%83%BD/</link>
+    <pubDate>Sun, 04 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E5%BC%80%E5%90%AF%E8%A1%A5%E5%85%A8%E5%8A%9F%E8%83%BD/</guid>
+    <description><![CDATA[​ x64Dbg的Ctrl+G功能，有的时候能够自动补全Api名称，有的时候不行，我一开始没太注意这个功能，后来观察x64Dbg的源码才发现，]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Github碎片 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/github%E7%A2%8E%E7%89%87/</link>
+        <description>Github碎片 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/github%E7%A2%8E%E7%89%87/" rel="self" type="application/rss+xml" /><item>
+    <title>TCP通讯库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/</link>
+    <pubDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/tcp%E9%80%9A%E8%AE%AF%E5%BA%93/</guid>
+    <description><![CDATA[brynet 项目地址:https://github.com/Microsoft/vcpkg/tree/master/ports/brynet 这个库的优]]></description>
+</item>
+<item>
+    <title>Intel指令集文档</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E6%96%87%E6%A1%A3/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/x86%E6%8C%87%E4%BB%A4%E9%9B%86%E6%96%87%E6%A1%A3/</guid>
+    <description><![CDATA[​ 项目地址:zneak/x86doc: HTML representation of the Intel x86 instructions documentation ​ 作者将Intel官方的指令集PDF手册转换成了HTML文档，转换后的结果如下:htt]]></description>
+</item>
+<item>
+    <title>json解析库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/json%E8%A7%A3%E6%9E%90%E5%BA%93/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/json%E8%A7%A3%E6%9E%90%E5%BA%93/</guid>
+    <description><![CDATA[nlohmann json nlohmann/json: JSON for Modern C++ 这可能是github上star数目最多的一个json库了，只需要包含一个头文件即可快速将库添加至开发环境，并且简单易用，快速上]]></description>
+</item>
+<item>
+    <title>URL解析库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/url%E8%A7%A3%E6%9E%90%E5%BA%93/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/url%E8%A7%A3%E6%9E%90%E5%BA%93/</guid>
+    <description><![CDATA[URL Parser 解析引擎似乎存在Bug? hcs-url 似乎无法对有缺失的URL进行解析。 EdUrlParser 功能太简单了。 CxxUrl 兼容性似乎不太行。 Url Parser 需要引入Boost三方库 Simple Url Parser 各方面]]></description>
+</item>
+<item>
+    <title>kafka三方库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/kafka%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+    <pubDate>Mon, 26 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/kafka%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+    <description><![CDATA[​ 首先简单介绍一下kafka吧。 Kafka是最初由Linkedin公司开发，是一个分布式、分区的、多副本的、多订阅者，基于zookeeper]]></description>
+</item>
+<item>
+    <title>CSV解析引擎</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/</link>
+    <pubDate>Sun, 14 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/</guid>
+    <description><![CDATA[因为工作的需要，不可避免地要对csv进行解析，但是自己写解析引擎的话只能写几句玩具代码，上限太低，不堪入目，所以一个好用的CSV解析引擎库就]]></description>
+</item>
+<item>
+    <title>Graphviz</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/graphviz/</link>
+    <pubDate>Sat, 30 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/graphviz/</guid>
+    <description><![CDATA[Github项目地址:graphviz Graphviz 是一款由 AT&amp;T Research 和 Lucent Bell 实验室开源的可视化图形工具，用于绘制DOT语言脚本描述的图形。它可以很方便的用来绘]]></description>
+</item>
+<item>
+    <title>NetworKit</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/networkit/</link>
+    <pubDate>Sat, 30 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/networkit/</guid>
+    <description><![CDATA[Github项目地址:NetworKit NetworKit是用一个用于高性能网络分析的开源工具包，其目标是为了分析上千或者上亿条边的大型网络]]></description>
+</item>
+<item>
+    <title>DocFx学习笔记</title>
+    <link>https://fjqisba.github.io/posts/docfx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 13 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/docfx%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[1.DocFx是微软的一款开源的文档生成工具，下载地址如下:https://github.com/dotnet/docfx/releases]]></description>
+</item>
+<item>
+    <title>反汇编引擎</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/%E5%8F%8D%E6%B1%87%E7%BC%96%E5%BC%95%E6%93%8E/</link>
+    <pubDate>Sun, 16 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/%E5%8F%8D%E6%B1%87%E7%BC%96%E5%BC%95%E6%93%8E/</guid>
+    <description><![CDATA[ZyDis库 Zydis是一个开源的反汇编引擎库，项目地址为:https://github.com/zyantific/zydis。 1.克隆存]]></description>
+</item>
+</channel>
+</rss>

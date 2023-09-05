@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>CEF - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/cef/</link>
+        <description>CEF - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/cef/" rel="self" type="application/rss+xml" /><item>
+    <title>CEF浏览器框架</title>
+    <link>https://fjqisba.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</link>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</guid>
+    <description><![CDATA[Cef浏览器框架 1、Chromium不支持需要身份验证的SOCK5代理。 话说我试了几个小时，搜遍全网的资料，最后才得出这么一个结论😭 https://bugs.chromium.org/p/chromium/issues/detail?id=256785 浏览器]]></description>
+</item><item>
+    <title>对CEF程序进行爬虫</title>
+    <link>https://fjqisba.github.io/posts/%E7%88%AC%E8%99%AB/%E5%AF%B9cef%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E7%88%AC%E8%99%AB/</link>
+    <pubDate>Sun, 20 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E7%88%AC%E8%99%AB/%E5%AF%B9cef%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E7%88%AC%E8%99%AB/</guid>
+    <description><![CDATA[想标题想了很久，最后感觉还是用这个标题比较合适。 问题情景是这样的： 有一个较为古老的CEF程序，需要对程序里面的内容进行爬取，获取数据。 众所周]]></description>
+</item></channel>
+</rss>

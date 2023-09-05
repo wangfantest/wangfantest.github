@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>易语言支持库中的加密数据与解密数据 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="易语言支持库中的加密数据与解密数据" />
+<meta property="og:description" content="易语言数据操作支持库一中存在这样一对算法函数 调用格式： 〈字节集〉 加密数据 （字节集 字节集数据，文本型 密码文本，［整数型 加密算法］） - 数据操作支" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/" />
+<meta property="article:published_time" content="2021-01-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="易语言支持库中的加密数据与解密数据"/>
+<meta name="twitter:description" content="易语言数据操作支持库一中存在这样一对算法函数 调用格式： 〈字节集〉 加密数据 （字节集 字节集数据，文本型 密码文本，［整数型 加密算法］） - 数据操作支"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/" /><link rel="prev" href="https://fjqisba.github.io/posts/llvm/llvm-ir%E7%AE%80%E4%BB%8B%E4%B8%89/" /><link rel="next" href="https://fjqisba.github.io/posts/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "易语言支持库中的加密数据与解密数据",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E6%98%93%E8%AF%AD%E8%A8%80\/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE\/"
+        },"genre": "posts","keywords": "易语言, DES","wordcount":  1503 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E6%98%93%E8%AF%AD%E8%A8%80\/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE\/","datePublished": "2021-01-11T00:00:00+00:00","dateModified": "2021-01-11T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">易语言支持库中的加密数据与解密数据</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%98%93%E8%AF%AD%E8%A8%80%E9%80%86%E5%90%91/"><i class="far fa-folder fa-fw"></i>易语言逆向</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-11">2021-01-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1503 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>易语言<strong>数据操作支持库一</strong>中存在这样一对算法函数</p>
+<pre><code>调用格式： 〈字节集〉 加密数据 （字节集 字节集数据，文本型 密码文本，［整数型 加密算法］） - 数据操作支持库一-&gt;数据加解密
+英文名称：Encrypt
+加密一段字节集数据，返回加密后的结果字节集。如果失败，返回空字节集。本命令为初级命令。
+	参数&lt;1&gt;的名称为“字节集数据”，类型为“字节集（bin）”。为命令提供所需的字节集数据。
+	参数&lt;2&gt;的名称为“密码文本”，类型为“文本型（text）”。
+	参数&lt;3&gt;的名称为“加密算法”，类型为“整数型（int）”，可以被省略。指定具体使用的加密算法，可以为以下常量值之一：1: #DES算法； 2: #RC4算法。加密和解密必须使用相同的算法，有关算法的具体说明请参阅有关文献。如果本参数被省略，则默认值为1，即DES算法。
+</code></pre><pre><code>调用格式： 〈字节集〉 解密数据 （字节集 字节集数据，文本型 密码文本，［整数型 加密算法］） - 数据操作支持库一-&gt;数据加解密
+英文名称：Decrypt
+解密一段加密后的字节集数据，返回解密后的结果字节集。注意本命令并不对密码文本进行校验，如果密码提供错误，将返回错误的结果。如果失败，返回空字节集。本命令为初级命令。
+	参数&lt;1&gt;的名称为“字节集数据”，类型为“字节集（bin）”。为命令提供所需的字节集数据。
+    参数&lt;2&gt;的名称为“密码文本”，类型为“文本型（text）”。
+    参数&lt;3&gt;的名称为“加密算法”，类型为“整数型（int）”，可以被省略。指定具体使用的加密算法，可以为以下常量值之一：1: #DES算法； 2: #RC4算法。加密和解密必须使用相同的算法，有关算法的具体说明请参阅有关文献。如果本参数被省略，则默认值为1，即DES算法。
+</code></pre><p>这个函数里面的DES算法是不标准的，如果我们需要逆向算法或者移植语言，就会陷入坑中。。。。</p>
+<p>根据别人研究的资料， 得知将密钥进行变换就可以对齐结果，实现Go语言代码如下:</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">Utils</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;bytes&#34;</span>
+	<span class="s">&#34;crypto/des&#34;</span>
+	<span class="s">&#34;encoding/binary&#34;</span>
+	<span class="s">&#34;math/bits&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">zeroPadding</span><span class="p">(</span><span class="nx">ciphertext</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">blockSize</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">byte</span> <span class="p">{</span>
+	<span class="nx">padding</span> <span class="o">:=</span> <span class="nx">blockSize</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="nx">ciphertext</span><span class="p">)</span> <span class="o">%</span> <span class="nx">blockSize</span>
+	<span class="nx">padtext</span> <span class="o">:=</span> <span class="nx">bytes</span><span class="p">.</span><span class="nf">Repeat</span><span class="p">([]</span><span class="kt">byte</span><span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="nx">padding</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nb">append</span><span class="p">(</span><span class="nx">ciphertext</span><span class="p">,</span> <span class="nx">padtext</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">E_加密数据_DES</span><span class="p">(</span><span class="nx">加密数据</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="nx">密码文本</span> <span class="kt">string</span><span class="p">)([]</span><span class="kt">byte</span><span class="p">,</span><span class="kt">error</span><span class="p">)</span>  <span class="p">{</span>
+
+	<span class="nx">key</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+
+	<span class="c1">//压缩密钥
+</span><span class="c1"></span>	<span class="nx">sIndex</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">eKey</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">密码文本</span><span class="p">{</span>
+		<span class="nx">key</span><span class="p">[</span><span class="nx">sIndex</span><span class="p">]</span> <span class="p">=</span> <span class="nb">byte</span><span class="p">(</span><span class="nx">eKey</span><span class="p">)</span> <span class="p">^</span> <span class="nx">key</span><span class="p">[</span><span class="nx">sIndex</span><span class="p">]</span>
+		<span class="nx">sIndex</span> <span class="p">=</span> <span class="nx">sIndex</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="k">if</span> <span class="nx">sIndex</span> <span class="o">==</span> <span class="mi">8</span><span class="p">{</span>
+			<span class="nx">sIndex</span> <span class="p">=</span> <span class="mi">0</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">//转换密钥
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">n</span><span class="p">,</span><span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span><span class="p">{</span>
+		<span class="nx">key</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="p">=</span> <span class="nx">bits</span><span class="p">.</span><span class="nf">Reverse8</span><span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span>
+	<span class="p">}</span>
+
+	<span class="nx">block</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">des</span><span class="p">.</span><span class="nf">NewCipher</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span><span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="c1">//需要在数据前面追加长度
+</span><span class="c1"></span>	<span class="nx">inputData</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+	<span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nf">PutUint32</span><span class="p">(</span><span class="nx">inputData</span><span class="p">,</span><span class="nb">uint32</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">加密数据</span><span class="p">)))</span>
+	<span class="nx">inputData</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">inputData</span><span class="p">,</span> <span class="nx">加密数据</span><span class="o">...</span><span class="p">)</span>
+	<span class="nx">inputData</span> <span class="p">=</span> <span class="nf">zeroPadding</span><span class="p">(</span><span class="nx">inputData</span><span class="p">,</span><span class="nx">block</span><span class="p">.</span><span class="nf">BlockSize</span><span class="p">())</span>
+
+	<span class="c1">//开始执行加密
+</span><span class="c1"></span>	<span class="nx">encryptedData</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">inputData</span><span class="p">))</span>
+	<span class="nx">data</span> <span class="o">:=</span> <span class="nx">inputData</span>
+	<span class="nx">dst</span> <span class="o">:=</span> <span class="nx">encryptedData</span>
+	<span class="nx">bs</span> <span class="o">:=</span> <span class="nx">block</span><span class="p">.</span><span class="nf">BlockSize</span><span class="p">()</span>
+	<span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="c1">// Mandarin encryption is made according to blocksize
+</span><span class="c1"></span>		<span class="c1">// Can use the Go key to encrypt
+</span><span class="c1"></span>		<span class="nx">block</span><span class="p">.</span><span class="nf">Encrypt</span><span class="p">(</span><span class="nx">dst</span><span class="p">,</span> <span class="nx">data</span><span class="p">[:</span><span class="nx">bs</span><span class="p">])</span>
+		<span class="nx">data</span> <span class="p">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">bs</span><span class="p">:]</span>
+		<span class="nx">dst</span> <span class="p">=</span> <span class="nx">dst</span><span class="p">[</span><span class="nx">bs</span><span class="p">:]</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">encryptedData</span><span class="p">,</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">E_解密数据_DES</span><span class="p">(</span><span class="nx">解密数据</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="nx">密码文本</span> <span class="kt">string</span><span class="p">)([]</span><span class="kt">byte</span><span class="p">,</span><span class="kt">error</span><span class="p">)</span>  <span class="p">{</span>
+
+	<span class="nx">key</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+
+	<span class="c1">//压缩密钥
+</span><span class="c1"></span>	<span class="nx">sIndex</span> <span class="o">:=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">eKey</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">密码文本</span><span class="p">{</span>
+		<span class="nx">key</span><span class="p">[</span><span class="nx">sIndex</span><span class="p">]</span> <span class="p">=</span> <span class="nb">byte</span><span class="p">(</span><span class="nx">eKey</span><span class="p">)</span> <span class="p">^</span> <span class="nx">key</span><span class="p">[</span><span class="nx">sIndex</span><span class="p">]</span>
+		<span class="nx">sIndex</span> <span class="p">=</span> <span class="nx">sIndex</span> <span class="o">+</span> <span class="mi">1</span>
+		<span class="k">if</span> <span class="nx">sIndex</span> <span class="o">==</span> <span class="mi">8</span><span class="p">{</span>
+			<span class="nx">sIndex</span> <span class="p">=</span> <span class="mi">0</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="c1">//转换密钥
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">n</span><span class="p">,</span><span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">key</span><span class="p">{</span>
+		<span class="nx">key</span><span class="p">[</span><span class="nx">n</span><span class="p">]</span> <span class="p">=</span> <span class="nx">bits</span><span class="p">.</span><span class="nf">Reverse8</span><span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">n</span><span class="p">])</span>
+	<span class="p">}</span>
+
+	<span class="nx">block</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">des</span><span class="p">.</span><span class="nf">NewCipher</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span><span class="o">!=</span><span class="kc">nil</span><span class="p">{</span>
+		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span><span class="nx">err</span>
+	<span class="p">}</span>
+
+	<span class="c1">//开始执行解密
+</span><span class="c1"></span>	<span class="nx">decryptedData</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">解密数据</span><span class="p">))</span>
+	<span class="nx">data</span> <span class="o">:=</span> <span class="nx">解密数据</span>
+	<span class="nx">dst</span> <span class="o">:=</span> <span class="nx">decryptedData</span>
+	<span class="nx">bs</span> <span class="o">:=</span> <span class="nx">block</span><span class="p">.</span><span class="nf">BlockSize</span><span class="p">()</span>
+	<span class="k">for</span> <span class="nb">len</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+		<span class="c1">// Mandarin encryption is made according to blocksize
+</span><span class="c1"></span>		<span class="c1">// Can use the Go key to encrypt
+</span><span class="c1"></span>		<span class="nx">block</span><span class="p">.</span><span class="nf">Decrypt</span><span class="p">(</span><span class="nx">dst</span><span class="p">,</span> <span class="nx">data</span><span class="p">[:</span><span class="nx">bs</span><span class="p">])</span>
+		<span class="nx">data</span> <span class="p">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">bs</span><span class="p">:]</span>
+		<span class="nx">dst</span> <span class="p">=</span> <span class="nx">dst</span><span class="p">[</span><span class="nx">bs</span><span class="p">:]</span>
+	<span class="p">}</span>
+
+	<span class="c1">//读取头部数据
+</span><span class="c1"></span>	<span class="nx">recvLen</span> <span class="o">:=</span> <span class="nx">binary</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">.</span><span class="nf">Uint32</span><span class="p">(</span><span class="nx">decryptedData</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">decryptedData</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="nx">recvLen</span><span class="o">+</span><span class="mi">4</span><span class="p">],</span> <span class="kc">nil</span>
+<span class="p">}</span>
+</code></pre></div><p>另外附上一份别人写的python版本</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">DES</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+
+<span class="k">def</span> <span class="nf">reverse_bytes</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bytes</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)):</span>
+        <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;0&gt;8b&#39;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_new_key</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">key</span><span class="p">:</span>
+        <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span> <span class="o">^</span> <span class="n">ba</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span>
+
+
+<span class="c1"># zero padding</span>
+<span class="k">def</span> <span class="nf">padding</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">ba</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span> <span class="o">%</span> <span class="mi">8</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ba</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">append_len</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bytes</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s1">&#39;&lt;L&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">length</span> <span class="o">+</span> <span class="n">d</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">remove_len</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bytes</span>
+    <span class="k">return</span> <span class="n">d</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span>
+
+
+<span class="k">def</span> <span class="nf">e_des_encrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="n">des</span> <span class="o">=</span> <span class="n">DES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">reverse_bytes</span><span class="p">(</span><span class="n">get_new_key</span><span class="p">(</span><span class="n">key</span><span class="p">)),</span> <span class="n">DES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">des</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">padding</span><span class="p">(</span><span class="n">append_len</span><span class="p">(</span><span class="n">plain</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">e_des_decrypt</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="n">des</span> <span class="o">=</span> <span class="n">DES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">reverse_bytes</span><span class="p">(</span><span class="n">get_new_key</span><span class="p">(</span><span class="n">key</span><span class="p">)),</span> <span class="n">DES</span><span class="o">.</span><span class="n">MODE_ECB</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">des</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">remove_len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># 易语言：</span>
+  <span class="c1"># 输出调试文本(字节集_字节集到十六进制 (加密数据 (到字节集 (“123456789”), “123456789”, #DES算法)))</span>
+  <span class="c1"># 输出：</span>
+  <span class="c1"># 53DEE70DD231541839EB99553B8B056D</span>
+  <span class="c1"># --------------------------------</span>
+  <span class="c1"># python:</span>
+  <span class="n">plain</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;123456789&#39;</span>
+  <span class="n">key</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;123456789&#39;</span>
+  <span class="n">ciph</span> <span class="o">=</span> <span class="n">e_des_encrypt</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+  <span class="k">print</span><span class="p">(</span><span class="n">ciph</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">e_des_decrypt</span><span class="p">(</span><span class="n">ciph</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+  <span class="c1"># 输出:</span>
+  <span class="c1"># 53DEE70DD231541839EB99553B8B056D123456789</span>
+  <span class="c1"># 123456789</span>
+</code></pre></div><h4 id="参考资料">参考资料</h4>
+<p><a href="https://monvvv.github.io/2019/10/09/A-weird-way-of-DES-implementation-of-Elang.html">https://monvvv.github.io/2019/10/09/A-weird-way-of-DES-implementation-of-Elang.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-11</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%98%93%E8%AF%AD%E8%A8%80/">易语言</a>,&nbsp;<a href="/tags/des/">DES</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/llvm/llvm-ir%E7%AE%80%E4%BB%8B%E4%B8%89/" class="prev" rel="prev" title="LLVM IR简介(三)"><i class="fas fa-angle-left fa-fw"></i>LLVM IR简介(三)</a>
+            <a href="/posts/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2/" class="next" rel="next" title="Hugo搭建LoveIt博客">Hugo搭建LoveIt博客<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

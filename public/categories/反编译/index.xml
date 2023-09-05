@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>反编译 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/</link>
+        <description>反编译 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 06 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="self" type="application/rss+xml" /><item>
+    <title>SmartDec源码阅读</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/smartdec%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</link>
+    <pubDate>Mon, 06 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/smartdec%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</guid>
+    <description><![CDATA[SmartDec反编译器项目地址:https://github.com/smartdec/smartdec 记录 反编译逻辑入口:void Decompilation::work()]]></description>
+</item><item>
+    <title>反编译项目介绍</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E5%8F%8D%E7%BC%96%E8%AF%91%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</link>
+    <pubDate>Sun, 05 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E5%8F%8D%E7%BC%96%E8%AF%91%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</guid>
+    <description><![CDATA[SmartDec 项目地址:https://github.com/smartdec/smartdec C++编写的反编译器，需要Qt和Boost库，支持PE和]]></description>
+</item><item>
+    <title>Ghidra反编译器</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8/</link>
+    <pubDate>Mon, 09 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8/</guid>
+    <description><![CDATA[​ Ghidra项目地址:https://github.com/NationalSecurityAgency/ghidra ​ 在项目/Ghidr]]></description>
+</item><item>
+    <title>MinGW编译器</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/mingw/</link>
+    <pubDate>Mon, 09 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/mingw/</guid>
+    <description><![CDATA[​ 懒癌犯了，这里简要介绍一下吧。 ​ MinGw就是一个编译器，你可以理解为和Visual Studio差不多的一个玩意儿，只不过MinGw更原始]]></description>
+</item><item>
+    <title>反编译之分支流程图的生成</title>
+    <link>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E5%88%86%E6%94%AF%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/</link>
+    <pubDate>Sun, 16 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E5%88%86%E6%94%AF%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%9A%84%E7%94%9F%E6%88%90/</guid>
+    <description><![CDATA[递归下降分析法 如果我们需要对某一段代码进行流程分析，那么首先需要思考一下这些代码有什么特点。 这些代码有一个非常重要的特点是，cpu执行指令的]]></description>
+</item></channel>
+</rss>

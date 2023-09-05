@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>汇编 MASM - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E6%B1%87%E7%BC%96-masm/</link>
+        <description>汇编 MASM - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 23 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E6%B1%87%E7%BC%96-masm/" rel="self" type="application/rss+xml" /><item>
+    <title>MASM学习</title>
+    <link>https://fjqisba.github.io/posts/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/</link>
+    <pubDate>Wed, 23 Dec 2020 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/</guid>
+    <description><![CDATA[16位、32位、64位指令 80x86系列处理器有一个逐渐发展的过程。 8086、8088、80286是16位结构处理器，支持16位指令系统。 常]]></description>
+</item>
+</channel>
+</rss>

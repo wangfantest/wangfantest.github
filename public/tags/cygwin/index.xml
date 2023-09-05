@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Cygwin - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/cygwin/</link>
+        <description>Cygwin - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/cygwin/" rel="self" type="application/rss+xml" /><item>
+    <title>Cygwin和Wine</title>
+    <link>https://fjqisba.github.io/posts/linux/cygwin/</link>
+    <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/linux/cygwin/</guid>
+    <description><![CDATA[​ 在我们遇到与跨平台有关的一些事的时候，估计就会碰上这玩意。Cygwin提供了一个在Windows下面使用Linux环境的平台。 ​ 这个cyg]]></description>
+</item></channel>
+</rss>

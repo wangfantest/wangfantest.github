@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>图标 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E5%9B%BE%E6%A0%87/</link>
+        <description>图标 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 30 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E5%9B%BE%E6%A0%87/" rel="self" type="application/rss+xml" /><item>
+    <title>图标设计</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1/</link>
+    <pubDate>Wed, 30 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1/</guid>
+    <description><![CDATA[​ 在起手开发一个程序的时候，我们总是想先决定好程序的图标，毕竟只有图标选好了，程序的代码才放心敲下去不是吗？ 图标素材库 https://www.flaticon.com http://flat-icon-design.com http://www.fontawesome.com.cn/ 将任意图片转成i]]></description>
+</item></channel>
+</rss>

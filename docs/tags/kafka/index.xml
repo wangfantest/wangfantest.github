@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>kafka - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/kafka/</link>
+        <description>kafka - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 26 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/kafka/" rel="self" type="application/rss+xml" /><item>
+    <title>kafka三方库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/kafka%E4%B8%89%E6%96%B9%E5%BA%93/</link>
+    <pubDate>Mon, 26 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/kafka%E4%B8%89%E6%96%B9%E5%BA%93/</guid>
+    <description><![CDATA[​ 首先简单介绍一下kafka吧。 Kafka是最初由Linkedin公司开发，是一个分布式、分区的、多副本的、多订阅者，基于zookeeper]]></description>
+</item>
+</channel>
+</rss>

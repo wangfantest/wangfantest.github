@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>pip - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/pip/</link>
+        <description>pip - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Fri, 08 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/pip/" rel="self" type="application/rss+xml" /><item>
+    <title>Python安装Crypto库</title>
+    <link>https://fjqisba.github.io/posts/python/python%E5%AE%89%E8%A3%85crypto%E5%BA%93/</link>
+    <pubDate>Fri, 08 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/python/python%E5%AE%89%E8%A3%85crypto%E5%BA%93/</guid>
+    <description><![CDATA[python安装Crypto这个库非常的坑，正确步骤似乎是: 1、pip install pycryptodome 2、将python lib库目录下面的crypto文件夹名改成大写的]]></description>
+</item>
+<item>
+    <title>Python常见数据类型转换</title>
+    <link>https://fjqisba.github.io/posts/python/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</link>
+    <pubDate>Fri, 08 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/python/python%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/</guid>
+    <description><![CDATA[str和bytes python3中str默认是Unicode，bytes则是utf-8。 例如字符串&quot;我日你哥&quot;，在str]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>paypal开通支付 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="paypal开通支付" />
+<meta property="og:description" content="paypal开通支付 paypal是国外的一套支付服务系统，基于web来实现。 官方文档:https://developer.paypal.co" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-31T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="paypal开通支付"/>
+<meta name="twitter:description" content="paypal开通支付 paypal是国外的一套支付服务系统，基于web来实现。 官方文档:https://developer.paypal.co"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" /><link rel="next" href="https://fjqisba.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "paypal开通支付",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91\/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98\/"
+        },"genre": "posts","keywords": "paypal","wordcount":  1209 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91\/paypal%E5%BC%80%E9%80%9A%E6%94%AF%E4%BB%98\/","datePublished": "2021-12-31T00:00:00+00:00","dateModified": "2021-12-31T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">paypal开通支付</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>后端开发</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-12-31">2021-12-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1209 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#总结大致流程如下">总结大致流程如下:</a></li>
+    <li><a href="#paypal安全">Paypal安全</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="paypal开通支付">paypal开通支付</h1>
+<p>paypal是国外的一套支付服务系统，基于web来实现。</p>
+<p>官方文档:https://developer.paypal.com/docs/</p>
+<p>代码样例:https://demo.paypal.com/us/demo/code_samples</p>
+<p>官方文档点进去之后，主页有三种平台文档:</p>
+<p>1、For Business:中小型企业解决方案。</p>
+<p>2、For Marketplaces and Platforms:大型销售平台?</p>
+<p>3、For Enterprise:大型企业支付解决方案。</p>
+<p>按我的猜测，应该是规模和等级依次增加吧，这样的话我就选择1，我就想搭建个小型的收费平台而已。</p>
+<hr>
+<p>封装好的SDK:https://github.com/go-pay/gopay</p>
+<p>新手教程:https://developer.paypal.com/docs/business/get-started/</p>
+<p>1、paypal提供了一个沙盒平台，开发人员可以在上面进行模拟整套支付流程。</p>
+<p>首先需要创建一个App，在<a href="https://developer.paypal.com/developer/applications/create" target="_blank" rel="noopener noreffer">创建App</a>
+页面点击创建App按钮即可。</p>
+<p>我们会得到一个沙盒APP凭证，里面包含</p>
+<pre tabindex="0"><code>Account:	xxx@business.example.com
+Client-ID:	xxxxxx
+Secret:	xxxxx
+</code></pre><p>这个凭证可以通过官方的一个接口，转换成一个Token凭证，即 <code>Client-ID + Secret  =&gt; Token</code>，通过这个Token我们可以去访问创建订单、更新订单、捕获订单等其它API，Token存在一个有效期，如果过期了重新登录即可。</p>
+<p>paypal默认还会给我们生成商户和用户两个虚拟账户，在https://www.sandbox.paypal.com上登录能查看到付款和收款情况。</p>
+<p>2、创建订单</p>
+<p>懒得写了。</p>
+<h2 id="总结大致流程如下">总结大致流程如下:</h2>
+<p>1、服务器使用后台的Client-ID和Secret去登录paypal，获取访问paypal接口的权限。</p>
+<p>2、服务器提供接口<strong>server_CreateOrder</strong>，用于创建订单。</p>
+<p>3、客户端传入商品信息至服务器接口<strong>server_CreateOrder</strong>。</p>
+<p>4、服务器接口<strong>server_CreateOrder</strong>收到订单后，调用paypal API，接口是<strong>paypal_CreateOrder</strong>，在这里传入商品的价格、订单的设定 (是否要显示收获地址等&hellip;)、以及用户完成订单后的重定向地址，最终得到订单的付费URL地址，再返回给客户端。</p>
+<p>5、客户端得到付费的URL地址，通过浏览器访问并付费，付费成功后调用服务器给的重定向地址(可以算是接口)，通知服务器我已经付费完成了。</p>
+<p>6、在此时，客户端的付费其实并未被paypal认可，只有服务端收到客户端的通知后，去调用<strong>paypal_CaptureOrder</strong>函数，捕获住订单，paypal才会承认客户已经付费，服务端此时检查订单的状态是否已完成，返回一些信息给客户端即可。</p>
+<p>7、服务端在paypal后台已经设定好了webhook地址，当整个订单完成时候，paypal会发送消息通知服务端paypal的webhook接口，服务端此时确定通过付费，进行一系列操作。</p>
+<h2 id="paypal安全">Paypal安全</h2>
+<p><a href="https://developer.paypal.com/docs/api/info-security-guidelines/" target="_blank" rel="noopener noreffer">https://developer.paypal.com/docs/api/info-security-guidelines/</a>
+</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-31</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/paypal/">paypal</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90/" class="prev" rel="prev" title="域名解析"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>域名解析</a>
+            <a href="/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/cef%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/" class="next" rel="next" title="CEF浏览器框架">CEF浏览器框架<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>开源项目 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</link>
+        <description>开源项目 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 14 Mar 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" rel="self" type="application/rss+xml" /><item>
+    <title>CSV解析引擎</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/</link>
+    <pubDate>Sun, 14 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/csv%E8%A7%A3%E6%9E%90%E5%BC%95%E6%93%8E/</guid>
+    <description><![CDATA[因为工作的需要，不可避免地要对csv进行解析，但是自己写解析引擎的话只能写几句玩具代码，上限太低，不堪入目，所以一个好用的CSV解析引擎库就]]></description>
+</item><item>
+    <title>Graphviz</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/graphviz/</link>
+    <pubDate>Sat, 30 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/graphviz/</guid>
+    <description><![CDATA[Github项目地址:graphviz Graphviz 是一款由 AT&amp;T Research 和 Lucent Bell 实验室开源的可视化图形工具，用于绘制DOT语言脚本描述的图形。它可以很方便的用来绘]]></description>
+</item><item>
+    <title>NetworKit</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/networkit/</link>
+    <pubDate>Sat, 30 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/networkit/</guid>
+    <description><![CDATA[Github项目地址:NetworKit NetworKit是用一个用于高性能网络分析的开源工具包，其目标是为了分析上千或者上亿条边的大型网络]]></description>
+</item></channel>
+</rss>

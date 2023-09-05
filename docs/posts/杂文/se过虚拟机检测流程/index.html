@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SE过虚拟机检测流程 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="SE过虚拟机检测流程" />
+<meta property="og:description" content="1.注册表检测 [HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS] &ldquo;SystemManufacturer&rdquo;=&ldquo;VMware, Inc.&rdquo; 根据SystemManufacturer中的内容计算出一个hash值，判断是否为0x6A7BDBF4。 可以通过修改注册表" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E6%9D%82%E6%96%87/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-07-04T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SE过虚拟机检测流程"/>
+<meta name="twitter:description" content="1.注册表检测 [HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS] &ldquo;SystemManufacturer&rdquo;=&ldquo;VMware, Inc.&rdquo; 根据SystemManufacturer中的内容计算出一个hash值，判断是否为0x6A7BDBF4。 可以通过修改注册表"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E6%9D%82%E6%96%87/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E5%BC%80%E5%90%AF%E8%A1%A5%E5%85%A8%E5%8A%9F%E8%83%BD/" /><link rel="next" href="https://fjqisba.github.io/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SE过虚拟机检测流程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E6%9D%82%E6%96%87\/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B\/"
+        },"genre": "posts","keywords": "SafeEngine","wordcount":  705 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E6%9D%82%E6%96%87\/se%E8%BF%87%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A3%80%E6%B5%8B%E6%B5%81%E7%A8%8B\/","datePublished": "2021-07-04T00:00:00+00:00","dateModified": "2021-07-04T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SE过虚拟机检测流程</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9D%82%E6%96%87/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>杂文</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-07-04">2021-07-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 705 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="1注册表检测">1.注册表检测</h4>
+<p>[HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System\BIOS]
+&ldquo;SystemManufacturer&rdquo;=&ldquo;VMware, Inc.&rdquo;</p>
+<p>根据SystemManufacturer中的内容计算出一个hash值，判断是否为0x6A7BDBF4。</p>
+<p>可以通过修改注册表来绕过此检测。</p>
+<h4 id="2特权指令检测">2.特权指令检测</h4>
+<p>通过以下代码来检测是否在虚拟机内</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">IsInsideVMWare</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">bool</span> <span class="n">rc</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">__try</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kr">__asm</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">push</span> <span class="n">edx</span>
+</span></span><span class="line"><span class="cl">			<span class="n">push</span> <span class="n">ecx</span>
+</span></span><span class="line"><span class="cl">			<span class="n">push</span> <span class="n">ebx</span>
+</span></span><span class="line"><span class="cl">			<span class="n">mov</span> <span class="n">eax</span><span class="p">,</span> <span class="err">‘</span><span class="n">VMXh</span><span class="err">’</span>
+</span></span><span class="line"><span class="cl">			<span class="n">mov</span> <span class="n">ebx</span><span class="p">,</span> <span class="mi">0</span> <span class="c1">// 将ebx设置为非幻数’VMXH’的其它值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span> <span class="mi">10</span> <span class="c1">// 指定功能号，用于获取VMWare版本，当它为0x14时用于获取VMware内存大小
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">mov</span> <span class="n">edx</span><span class="p">,</span> <span class="err">‘</span><span class="n">VX</span><span class="err">’</span> <span class="c1">// 端口号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">in</span> <span class="n">eax</span><span class="p">,</span> <span class="n">dx</span> <span class="c1">// 从端口dx读取VMware版本到eax
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="c1">//若上面指定功能号为0x14时，可通过判断eax中的值是否大于0，若是则说明处于虚拟机中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">cmp</span> <span class="n">ebx</span><span class="p">,</span> <span class="err">‘</span><span class="n">VMXh</span><span class="err">’</span> <span class="c1">// 判断ebx中是否包含VMware版本’VMXh’，若是则在虚拟机中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">setz</span> <span class="p">[</span><span class="n">rc</span><span class="p">]</span> <span class="c1">// 设置返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">pop</span> <span class="n">ebx</span>
+</span></span><span class="line"><span class="cl">			<span class="n">pop</span> <span class="n">ecx</span>
+</span></span><span class="line"><span class="cl">			<span class="n">pop</span> <span class="n">edx</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kr">__except</span><span class="p">(</span><span class="n">EXCEPTION_EXECUTE_HANDLER</span><span class="p">)</span> <span class="c1">//如果未处于VMware中，则触发此异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">rc</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">rc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>目前没有找到什么好办法，可以在虚拟机vmx文件中加入以下配置绕过检测:</p>
+<pre tabindex="0"><code>monitor_control.restrict_backdoor = TRUE
+</code></pre><p>但这样有一个缺点就是会使Vmware Tools工具失效。</p>
+<h4 id="3vpcext指令检测">3.vpcext指令检测</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">DWORD</span> <span class="kr">__forceinline</span> <span class="nf">IsInsideVPC_exceptionFilter</span><span class="p">(</span><span class="n">LPEXCEPTION_POINTERS</span> <span class="n">ep</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="n">PCONTEXT</span> <span class="n">ctx</span> <span class="o">=</span> <span class="n">ep</span><span class="o">-&gt;</span><span class="n">ContextRecord</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">Ebx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// Not running VPC    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">Eip</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// skip past the &#34;call VPC&#34; opcodes    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="n">EXCEPTION_CONTINUE_EXECUTION</span><span class="p">;</span> <span class="c1">// we can safely resume execution since we skipped faulty instruction 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// high level language friendly version of IsInsideVPC()    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">bool</span> <span class="nf">IsInsideVPC</span><span class="p">()</span>    
+</span></span><span class="line"><span class="cl"><span class="p">{</span>    
+</span></span><span class="line"><span class="cl">  <span class="kt">bool</span> <span class="n">rc</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="kr">__try</span>    
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">push</span> <span class="n">ebx</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">mov</span>  <span class="n">ebx</span><span class="p">,</span> <span class="mi">0</span> <span class="c1">// Flag    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">_asm</span> <span class="n">mov</span>  <span class="n">eax</span><span class="p">,</span> <span class="mi">1</span> <span class="c1">// VPC function number    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">// call VPC     
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">_asm</span> <span class="n">__emit</span> <span class="mf">0F</span><span class="n">h</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">__emit</span> <span class="mf">3F</span><span class="n">h</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">__emit</span> <span class="mo">07</span><span class="n">h</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">__emit</span> <span class="mi">0</span><span class="n">Bh</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">test</span> <span class="n">ebx</span><span class="p">,</span> <span class="n">ebx</span>    
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">setz</span> <span class="p">[</span><span class="n">rc</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_asm</span> <span class="n">pop</span> <span class="n">ebx</span>    
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// The except block shouldn&#39;t get triggered if VPC is running!!    
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">__except</span><span class="p">(</span><span class="n">IsInsideVPC_exceptionFilter</span><span class="p">(</span><span class="n">GetExceptionInformation</span><span class="p">()))</span>    
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>    
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">rc</span><span class="p">;</span>    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>  
+</span></span></code></pre></div><p>这套代码是用来检测VPC虚拟机的，Vmware不用管。</p>
+<h4 id="4cpuid指令检测">4.cpuid指令检测</h4>
+<p>据说是检测cpuid一号功能 ecx的最高位。</p>
+<p>.vmx文件中添加下面配置可绕过检测。</p>
+<pre tabindex="0"><code>cpuid.1.ecx = &#34;0111:1111:1101:1010:1111:1011:1011:1111&#34;
+</code></pre><p>有一些AMD处理器的电脑似乎不支持上面的配置，修改后会无法正常启动虚拟机。这个时候添加下面的代码:</p>
+<pre tabindex="0"><code>hypervisor.cpuid.v0 = &#34;FALSE&#34;
+</code></pre><h4 id="参考资料">参考资料</h4>
+<p><a href="http://sanbarrow.com/index.html" target="_blank" rel="noopener noreffer">sanbarrow.com</a>
+</p>
+<p><a href="https://www.52pojie.cn/thread-598022-1-1.html" target="_blank" rel="noopener noreffer">绕过SE的虚拟机检测</a>
+</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/safeengine/">SafeEngine</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/x64dbg%E5%BC%80%E5%90%AF%E8%A1%A5%E5%85%A8%E5%8A%9F%E8%83%BD/" class="prev" rel="prev" title="x64Dbg开启补全功能"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>x64Dbg开启补全功能</a>
+            <a href="/posts/qt/qt%E7%BB%84%E4%BB%B6%E4%B9%8Bqlistwidget/" class="next" rel="next" title="QT组件之QListWidget">QT组件之QListWidget<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

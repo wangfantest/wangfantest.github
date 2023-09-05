@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go语言 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/go%E8%AF%AD%E8%A8%80/</link>
+        <description>Go语言 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/go%E8%AF%AD%E8%A8%80/" rel="self" type="application/rss+xml" /><item>
+    <title>Go语言程序添加图标</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</link>
+    <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%9B%BE%E6%A0%87/</guid>
+    <description><![CDATA[Go语言程序添加图标 1、下载rsrc工具 go get github.com/akavel/rsrc 2、生成程序描述文件ico.manifest &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;yes&#34;?&gt; &lt;assembly xmlns=&#34;urn:schemas-microsoft-com:asm.v1&#34; manifestVersion=&#34;1.0&#34;&gt; &lt;assemblyIdentity version=&#34;1.0.0.0&#34; processorArchitecture=&#34;x86&#34; name=&#34;controls&#34; type=&#34;win32&#34; &gt;&lt;/assemblyIdentity&gt; &lt;dependency&gt; &lt;dependentAssembly&gt; &lt;assemblyIdentity type=&#34;win32&#34; name=&#34;Microsoft.Windows.Common-Controls&#34; version=&#34;6.0.0.0&#34; processorArchitecture=&#34;*&#34; publicKeyToken=&#34;6595b64144ccf1df&#34; language=&#34;*&#34; &gt;&lt;/assemblyIdentity&gt; &lt;/dependentAssembly&gt; &lt;/dependency&gt;]]></description>
+</item>
+<item>
+    <title>Go语言调用Windows Api</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8windows-api/</link>
+    <pubDate>Tue, 14 Jun 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E8%B0%83%E7%94%A8windows-api/</guid>
+    <description><![CDATA[关于DLL的加载 调用消息框示例 func callMsgBox() { hUser32,_ := syscall.LoadDLL(&#34;user32.dll&#34;) callMessageBox, _ := hUser32.FindProc(&#34;MessageBoxW&#34;) text := uintptr(unsafe.Pointer(syscall.StringToUTF1]]></description>
+</item>
+<item>
+    <title>Go语言使用Walk界面库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8walk%E7%95%8C%E9%9D%A2%E5%BA%93/</link>
+    <pubDate>Mon, 23 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8walk%E7%95%8C%E9%9D%A2%E5%BA%93/</guid>
+    <description><![CDATA[项目地址:https://github.com/lxn/walk 示例代码:https://github.com/lxn/walk/tree/]]></description>
+</item>
+<item>
+    <title>Go语言使用Fyne界面库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/</link>
+    <pubDate>Thu, 05 May 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/</guid>
+    <description><![CDATA[项目地址:https://github.com/fyne-io/fyne 示例代码:https://github.com/fyne-io/fy]]></description>
+</item>
+<item>
+    <title>Go语言使用QT界面库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/</link>
+    <pubDate>Tue, 05 Apr 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/</guid>
+    <description><![CDATA[Go语言使用QT界面库 Go语言要使用QT库的话，装起来也是比较麻烦 项目地址:https://github.com/therecipe/qt 文]]></description>
+</item>
+<item>
+    <title>Go语言编写加密算法</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Sat, 26 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[Go语言编写加密算法]]></description>
+</item>
+<item>
+    <title>Go语言注意i事项</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</link>
+    <pubDate>Sun, 20 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</guid>
+    <description><![CDATA[Go语言注意事项 1、尽量避免使用init函数 init函数虽好，但随着项目代码的增加，这些init会成为隐患，满地的init函数，你根本理不清]]></description>
+</item>
+<item>
+    <title>Go语言常用时间转换</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</link>
+    <pubDate>Mon, 17 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E5%B8%B8%E7%94%A8%E6%97%B6%E9%97%B4%E8%BD%AC%E6%8D%A2/</guid>
+    <description><![CDATA[时间戳转换为时间 秒级别转换 timeStamp := 1642429952 timeStr := time.Unix(int64(timeStamp),0).Format(time.RFC3339) fmt.Println(timeStr) 毫秒级别转换 timeStamp := 1642430127727 timeStr := time.UnixMilli(int64(timeStamp)).Format(time.RFC3339) fmt.Println(timeStr) 时间转换为时间戳 秒级别转换 timeStamp := 1642429952 timeStr := time.Unix(int64(timeStamp),0) fmt.Println(timeStr.Unix()) 毫秒级别转换 timeStamp := 1642430127727 timeStr := time.UnixMilli(int64(timeStamp)) fmt.Println(timeStr.UnixMilli()) Go语言]]></description>
+</item>
+<item>
+    <title>Go语言操作sqlite3数据库</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9Csqlite3%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <pubDate>Sun, 16 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E6%93%8D%E4%BD%9Csqlite3%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+    <description><![CDATA[Sqlite3数据库 项目地址: https://github.com/mattn/go-sqlite3]]></description>
+</item>
+<item>
+    <title>Go语言编写DLL</title>
+    <link>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99dll/</link>
+    <pubDate>Mon, 27 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E7%BC%96%E5%86%99dll/</guid>
+    <description><![CDATA[Go语言编写DLL 要编写DLL，要用到CGO相关的东西，CGO是基于Mingw编译器的。 编写32位DLL需要安装Mingw，编写64位DLL]]></description>
+</item>
+</channel>
+</rss>

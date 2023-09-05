@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>代理 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E4%BB%A3%E7%90%86/</link>
+        <description>代理 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 11 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E4%BB%A3%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>代理服务器开发</title>
+    <link>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Thu, 11 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[正向代理与反向代理 无论代理服务器是正向还是反向，基本原理是相同的，如下图所示: 代理原理" 代理原理 正向代理被客户端所使用，客户端使用自己的代理]]></description>
+</item></channel>
+</rss>

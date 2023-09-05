@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Objection - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/objection/</link>
+        <description>Objection - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 22 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/objection/" rel="self" type="application/rss+xml" /><item>
+    <title>Objection学习</title>
+    <link>https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/objection%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Tue, 22 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/objection%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[Objection学习 安装 pip3 install -U objection 注入 常规注入 objection -g zs.miaohui.xin explore 启动注入 objection -g zs.miaohui.xin explore --startup-command &#34;android hooking watch class xxx&#34; 探索 打印内存中的所有类 android hooking list classes 搜索类名 android hooking search classes &lt;name&gt; 搜索方法 android]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Clang - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/clang/</link>
+        <description>Clang - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 07 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/clang/" rel="self" type="application/rss+xml" /><item>
+    <title>LLVM整体架构(二)</title>
+    <link>https://fjqisba.github.io/posts/llvm/llvm%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%BA%8C/</link>
+    <pubDate>Thu, 07 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/llvm/llvm%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%BA%8C/</guid>
+    <description><![CDATA[前端代码生成LLVM IR 使用以下命令将源代码转换成LLVM IR文本。 clang -emit-llvm -S test.c -o test.ll 前端代码生成可执行程序 基本选项是定义目标体系结构，语法为-ta]]></description>
+</item></channel>
+</rss>

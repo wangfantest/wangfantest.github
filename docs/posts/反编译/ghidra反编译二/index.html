@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Ghidra反编译器(二) - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="Ghidra反编译器(二)" />
+<meta property="og:description" content="关于Sleigh指令转换器 Sleigh::oneInstruction负责将二进制转换为反汇编或者PCode指令。 这是一个转换器，通过递归查" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-06-02T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ghidra反编译器(二)"/>
+<meta name="twitter:description" content="关于Sleigh指令转换器 Sleigh::oneInstruction负责将二进制转换为反汇编或者PCode指令。 这是一个转换器，通过递归查"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C/" /><link rel="prev" href="https://fjqisba.github.io/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/" /><link rel="next" href="https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Ghidra反编译器(二)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C\/"
+        },"genre": "posts","keywords": "Ghidra","wordcount":  812 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BA%8C\/","datePublished": "2023-06-02T00:00:00+00:00","dateModified": "2023-06-02T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Ghidra反编译器(二)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>反编译</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-02">2023-06-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 812 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="关于sleigh指令转换器">关于Sleigh指令转换器</h4>
+<p>Sleigh::oneInstruction负责将二进制转换为反汇编或者PCode指令。</p>
+<p>这是一个转换器，通过递归查表来实现快速转换。</p>
+<h4 id="关于反编译核心perform函数">关于反编译核心Perform函数</h4>
+<p>反编译的核心动作类是在Architecture::buildAction进行构建的。</p>
+<p>Action类就是执行一个反编译动作。</p>
+<p>ActionGroup是按照固定的顺序执行一组反编译动作。</p>
+<p>有各种各样的ActionGroup，根动作是ActionRestartGroup</p>
+<p>每个动作都有一个名称，所有的规则保存在actionmap中，规则还有不同的种类:</p>
+<p>有只执行一次的动作，还有每次函数发生改变都执行一次的动作。</p>
+<p>动作是非常多的</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">ActionRestartGroup</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionStart</span><span class="p">,</span><span class="err">非常关键，基本块和流程图生成</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionConstbase</span><span class="p">,</span><span class="err">搜寻常量输入节点</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionDefaultParams</span><span class="p">,</span><span class="err">初步确定每个子函数的原型</span><span class="p">,</span><span class="err">基本都是置为空</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionExtraPopSetup</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionPrototypeTypes</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ActionFuncLink</span>
+</span></span><span class="line"><span class="cl">    <span class="n">actfullloop</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">actmainloop</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionUnreachable</span><span class="p">,</span><span class="err">移除掉无法达到的</span><span class="n">Block块</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionVarnodeProps</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionHeritage</span><span class="p">,</span><span class="err">非常关键，执行</span><span class="n">SSA转换</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionParamDouble</span><span class="p">,</span><span class="err">处理参数可能为浮点数的子函数</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionSegmentize</span><span class="p">,</span><span class="err">处理区段相关的东西</span><span class="p">,</span><span class="err">貌似没什么用</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionForceGoto</span><span class="p">,</span><span class="err">处理强制跳转</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionDirectWrite</span><span class="p">,</span><span class="err">优化直接写入</span><span class="n">pcode</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionActiveParam</span><span class="p">,</span><span class="err">分析子函数的参数</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionReturnRecovery</span><span class="p">,</span><span class="err">分析</span><span class="n">return的结果</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionRestrictLocal</span><span class="p">,</span><span class="err">分析局部变量</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionDeadCode</span><span class="p">,</span><span class="err">非常关键，移除未被使用的代码</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionDynamicMapping</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionRestructureVarnode</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionSpacebase</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionNonzeroMask</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionInferTypes</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//不断继续优化,循环执行多遍
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">actstackstall</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">oppool1</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//针对OP规则进行优化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ActionLaneDivide</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ActionMultiCse</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ActionShadowVar</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ActionDeindirect</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ActionStackPtrFlow</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionRedundBranch</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionBlockStructure</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionConstantPtr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">oppool2</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//针对OP规则进行优化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionDeterminedBranch</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionUnreachable</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionNodeJoin</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionConditionalExe</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ActionConditionalConst</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionLikelyTrash</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionDirectWrite</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionDirectWrite</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionDeadCode</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionDoNothing</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionSwitchNorm</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionReturnSplit</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionUnjustifiedParams</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionStartTypes</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ActionActiveReturn</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionStartCleanUp</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">opcleanup</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//针对OP规则进行优化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionPreferComplement</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionStructureTransform</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionNormalizeBranches</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionAssignHigh</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMergeRequired</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMarkExplicit</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMarkImplied</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMergeMultiEntry</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMergeCopy</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionDominantCopy</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionDynamicSymbols</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMarkIndirectOnly</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMergeAdjacent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMergeType</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionHideShadow</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionCopyMarker</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionOutputPrototype</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionInputPrototype</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionRestructureHigh</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionMapGlobals</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionDynamicSymbols</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionNameVars</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionSetCasts</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionFinalStructure</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionPrototypeWarnings</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ActionStop</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-06-02</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ghidra/">Ghidra</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/python/windows%E6%90%AD%E5%BB%BApython%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83/" class="prev" rel="prev" title="Windows搭建Python源码编译环境"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Windows搭建Python源码编译环境</a>
+            <a href="/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" class="next" rel="next" title="游戏评测">游戏评测<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>RetDec反编译器学习 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="RetDec反编译器学习" />
+<meta property="og:description" content="项目地址 https://github.com/avast/retdec 编译前置条件 该项目引用了不少github远程库，你得有比较好的网络环境，不然国内网络你懂的。我自己也是用SSR &#43; SSTap才在vi" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-04-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-25T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RetDec反编译器学习"/>
+<meta name="twitter:description" content="项目地址 https://github.com/avast/retdec 编译前置条件 该项目引用了不少github远程库，你得有比较好的网络环境，不然国内网络你懂的。我自己也是用SSR &#43; SSTap才在vi"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/" /><link rel="next" href="https://fjqisba.github.io/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RetDec反编译器学习",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0\/"
+        },"genre": "posts","keywords": "RetDec","wordcount":  1425 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/retdec%E5%8F%8D%E7%BC%96%E8%AF%91%E5%99%A8%E5%AD%A6%E4%B9%A0\/","datePublished": "2022-04-25T00:00:00+00:00","dateModified": "2022-04-25T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RetDec反编译器学习</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>反编译</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-04-25">2022-04-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1425 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#项目地址">项目地址</a></li>
+    <li><a href="#编译前置条件">编译前置条件</a></li>
+    <li><a href="#编译时遇到的坑">编译时遇到的坑</a></li>
+    <li><a href="#capstone2llvmir">capstone2llvmir</a></li>
+    <li><a href="#bin2llvmir">bin2llvmir</a></li>
+    <li><a href="#retdec-decompiler">retdec-decompiler</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#retdec-provider-init">retdec-provider-init</a></li>
+    <li><a href="#retdec-decoder">retdec-decoder</a></li>
+    <li><a href="#paramreturn">ParamReturn</a></li>
+    <li><a href="#llvmir2hll">LlvmIr2Hll</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="项目地址">项目地址</h2>
+<p><a href="https://github.com/avast/retdec" target="_blank" rel="noopener noreffer">https://github.com/avast/retdec</a>
+</p>
+<h2 id="编译前置条件">编译前置条件</h2>
+<p>该项目引用了不少github远程库，你得有比较好的网络环境，不然国内网络你懂的。我自己也是用SSR + SSTap才在visual studio中成功编译出了该项目。</p>
+<h2 id="编译时遇到的坑">编译时遇到的坑</h2>
+<p>我在编译最新版的retdec-decompiler的时候，发现编译authenticode这个项目会出错，而且错误莫名奇妙，如下所示:</p>
+<pre tabindex="0"><code>在 &lt;未知&gt;“null”后添加了“14455024”字节填充
+</code></pre><p>后来发现是项目附加包含目录中没有OpenSSL。</p>
+<h2 id="capstone2llvmir">capstone2llvmir</h2>
+<p>是retdec反编译器的核心库，负责将二进制指令转换为llvmir。</p>
+<p>核心函数是Capstone2LlvmIrTranslator::translate，调试了一下发现原理没那么复杂，稍微懂点反汇编和LLVM基础应该都能理解。</p>
+<p>首先基于Capstone反汇编器将指令解析出来，之后基于LLVM库将这些PUSH,CALL指令转换成等价的LLVM基本指令。</p>
+<h2 id="bin2llvmir">bin2llvmir</h2>
+<p>从名字可以猜到，在capstone2llvmir的基础上，将二进制文件转换llvmir。</p>
+<h2 id="retdec-decompiler">retdec-decompiler</h2>
+<p>反编译器exe示例程序。</p>
+<p>1、核心函数就一个retdec::decompile，首先是调用initializeLlvmPasses初始化Pass，这里要注意的是，项目中的PASS是以静态模板类的方式注册的，例如下面这种:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">RegisterPass</span><span class="o">&lt;</span><span class="n">SyscallFixer</span><span class="o">&gt;</span> <span class="n">X</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;retdec-syscalls&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;Syscalls optimization&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">false</span><span class="p">,</span> <span class="c1">// Only looks at CFG
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nb">false</span> <span class="c1">// Analysis Pass
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">RegisterPass</span><span class="o">&lt;</span><span class="n">LlvmIrWriter</span><span class="o">&gt;</span> <span class="n">X</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;retdec-write-ll&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;Generate the current LLVM IR&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		 <span class="nb">false</span><span class="p">,</span> <span class="c1">// Only looks at CFG
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		 <span class="nb">false</span> <span class="c1">// Analysis Pass
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//........
+</span></span></span></code></pre></div><p>retdec注册的pass按照decompiler-config.json配置文件中的顺序进行添加，一共有以下:</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>pass</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ProviderInitialization</td>
+<td>retdec-provider-init</td>
+<td>初始化信息</td>
+</tr>
+<tr>
+<td>Decoder</td>
+<td>retdec-decoder</td>
+<td>将二进制解码成LLVM IR</td>
+</tr>
+<tr>
+<td>X86AddressSpacesPass</td>
+<td>retdec-x86-addr-spaces</td>
+<td>针对x86进行地址优化</td>
+</tr>
+<tr>
+<td>X87FpuAnalysis</td>
+<td>retdec-x87-fpu</td>
+<td>Fpu寄存器优化</td>
+</tr>
+<tr>
+<td>MainDetection</td>
+<td>retdec-main-detection</td>
+<td>main函数检测</td>
+</tr>
+<tr>
+<td>IdiomsLibgcc</td>
+<td>retdec-idioms-libgcc</td>
+<td></td>
+</tr>
+<tr>
+<td>Idioms</td>
+<td>retdec-idioms</td>
+<td></td>
+</tr>
+<tr>
+<td>InstructionOptimizer</td>
+<td>retdec-inst-opt</td>
+<td>指令优化，这个pass会多次调用</td>
+</tr>
+<tr>
+<td>CondBranchOpt</td>
+<td>retdec-cond-branch-opt</td>
+<td>条件跳转优化</td>
+</tr>
+<tr>
+<td>SyscallFixer</td>
+<td>retdec-syscalls</td>
+<td>优化syscall</td>
+</tr>
+<tr>
+<td>StackAnalysis</td>
+<td>retdec-stack</td>
+<td>堆栈分析</td>
+</tr>
+<tr>
+<td>ConstantsAnalysis</td>
+<td>retdec-constants</td>
+<td>常量分析</td>
+</tr>
+<tr>
+<td>ParamReturn</td>
+<td>retdec-param-return</td>
+<td></td>
+</tr>
+<tr>
+<td>InstructionRdaOptimizer</td>
+<td>retdec-inst-opt-rda</td>
+<td></td>
+</tr>
+<tr>
+<td>SimpleTypesAnalysis</td>
+<td>retdec-simple-types</td>
+<td>简单的数据类型分析</td>
+</tr>
+<tr>
+<td>DsmWriter</td>
+<td>retdec-write-dsm</td>
+<td></td>
+</tr>
+<tr>
+<td>AsmInstructionRemover</td>
+<td>retdec-remove-asm-instrs</td>
+<td></td>
+</tr>
+<tr>
+<td>ClassHierarchyAnalysis</td>
+<td>retdec-class-hierarchy</td>
+<td></td>
+</tr>
+<tr>
+<td>SelectFunctions</td>
+<td>retdec-select-fncs</td>
+<td></td>
+</tr>
+<tr>
+<td>UnreachableFuncs</td>
+<td>retdec-unreachable-funcs</td>
+<td></td>
+</tr>
+<tr>
+<td>RegisterLocalization</td>
+<td>retdec-register-localization</td>
+<td></td>
+</tr>
+<tr>
+<td>ValueProtect</td>
+<td>retdec-value-protect</td>
+<td>变量保护，防止过度优化</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>StackPointerOpsRemove</td>
+<td>retdec-stack-ptr-op-remove</td>
+<td>堆栈操作优化</td>
+</tr>
+<tr>
+<td>PhiRemover</td>
+<td>retdec-remove-phi</td>
+<td></td>
+</tr>
+<tr>
+<td>LlvmIrWriter</td>
+<td>retdec-write-ll</td>
+<td>生成LLVM IR</td>
+</tr>
+<tr>
+<td>BitcodeWriter</td>
+<td>retdec-write-bc</td>
+<td>生成bitcode信息</td>
+</tr>
+<tr>
+<td>LlvmIr2Hll</td>
+<td>retdec-llvmir2hll</td>
+<td></td>
+</tr>
+<tr>
+<td>ConfigWriter</td>
+<td>retdec-write-config</td>
+<td>生成配置信息</td>
+</tr>
+<tr>
+<td>DumpModule</td>
+<td>retdec-dump-module</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="llvmpass分析">LLVMPASS分析</h1>
+<h2 id="retdec-provider-init">retdec-provider-init</h2>
+<p>程序首先执行这个pass，主要用来初始化变量，没啥好说的。</p>
+<h2 id="retdec-decoder">retdec-decoder</h2>
+<p>这个是比较关键的的pass，将二进制中的每条指令全部解码转成LLVM IR。</p>
+<p>Decoder::decode函数，一边翻译地址一边确定函数范围。</p>
+<p>Decoder::initEnvironmentAsm2LlvmMapping函数，这个初始化函数是为了在转换出的LLVMIR里添加和原始ASM有关的元数据，方便后面解析LLVMIR。</p>
+<p>例如指令<strong>mov ebx,0x6;call 0x00401004</strong>转换成了下面的LLVMIR:</p>
+<pre tabindex="0"><code>; 0x40100f
+  store volatile i64 4198415, i64* @_asm_program_counter
+  store i32 6, i32* @ebx
+; 0x401014
+  store volatile i64 4198420, i64* @_asm_program_counter
+  %5 = load i32, i32* @esp
+  %6 = sub i32 %5, 4
+  %7 = inttoptr i32 %6 to i32*
+  store i32 4198425, i32* %7
+  store i32 %6, i32* @esp
+  call void @__pseudo_call(i32 4198404)
+  %8 = call i32 @sub_401004()
+  store i32 %8, i32* @eax
+</code></pre><p>Decoder::finalizePseudoCalls，处理pseudo_call</p>
+<p>pass是通过Config参数中的isSelectedDecodeOnly()函数来决定是反编译函数还是反编译整个bin的，通过遍历所有的跳转来得到可行路径，将decoder_debug.h中的变量debug_enabled设置为true，则会打印出日志。</p>
+<h2 id="paramreturn">ParamReturn</h2>
+<p>ParamReturn::collectExtraData函数尝试从config中采集函数的声明信息。</p>
+<h2 id="llvmir2hll">LlvmIr2Hll</h2>
+<p>将LLVMIR转换为源码。</p>
+<p>basic、simple、c、strict、dot、optim、pessim、readable</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-04-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/retdec/">RetDec</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8qt%E7%95%8C%E9%9D%A2%E5%BA%93/" class="prev" rel="prev" title="Go语言使用QT界面库"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Go语言使用QT界面库</a>
+            <a href="/posts/go%E8%AF%AD%E8%A8%80/go%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8fyne%E7%95%8C%E9%9D%A2%E5%BA%93/" class="next" rel="next" title="Go语言使用Fyne界面库">Go语言使用Fyne界面库<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>域名 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E5%9F%9F%E5%90%8D/</link>
+        <description>域名 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E5%9F%9F%E5%90%8D/" rel="self" type="application/rss+xml" /><item>
+    <title>域名查询</title>
+    <link>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E6%9F%A5%E8%AF%A2/</link>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%9F%9F%E5%90%8D%E6%9F%A5%E8%AF%A2/</guid>
+    <description><![CDATA[域名备案查询服务 https://whois.xinnet.com 简单易用，缺点是数据库有点垃圾，查不到域名的信息。 http://whois.chinaz.com/ 数据库还是比较弱。 https://shop.whois.com/ 数据库很强，加密也很强 http://www.jucha.com/whois/]]></description>
+</item>
+</channel>
+</rss>

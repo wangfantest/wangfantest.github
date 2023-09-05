@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>指令集 X86 - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/%E6%8C%87%E4%BB%A4%E9%9B%86-x86/</link>
+        <description>指令集 X86 - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 27 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/%E6%8C%87%E4%BB%A4%E9%9B%86-x86/" rel="self" type="application/rss+xml" /><item>
+    <title>X86指令进阶学习</title>
+    <link>https://fjqisba.github.io/posts/x86%E6%8C%87%E4%BB%A4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 27 Dec 2020 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/x86%E6%8C%87%E4%BB%A4%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[虽然说我天天和Windows X86平台下的汇编指令打交道，大部分指令都已经掌握了，但直到有一天需要对这些指令进行逐个解析处理的时候，才发现自]]></description>
+</item>
+</channel>
+</rss>

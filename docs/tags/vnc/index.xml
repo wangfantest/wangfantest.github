@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>vnc - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/vnc/</link>
+        <description>vnc - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 23 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/vnc/" rel="self" type="application/rss+xml" /><item>
+    <title>ubuntu替换apt源</title>
+    <link>https://fjqisba.github.io/posts/linux/ubuntu%E6%9B%BF%E6%8D%A2apt%E6%BA%90/</link>
+    <pubDate>Sun, 23 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/ubuntu%E6%9B%BF%E6%8D%A2apt%E6%BA%90/</guid>
+    <description><![CDATA[ubuntu替换apt源 有一些主机使用apt get命令会出现各种问题，那么很有可能是apt源有问题。 可以试试替换阿里云的软件源。 1、修改/e]]></description>
+</item>
+</channel>
+</rss>

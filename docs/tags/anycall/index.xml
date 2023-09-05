@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AnyCall - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/anycall/</link>
+        <description>AnyCall - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 10 Mar 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/anycall/" rel="self" type="application/rss+xml" /><item>
+    <title>关于调用任意函数</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E5%85%B3%E4%BA%8E%E8%B0%83%E7%94%A8%E4%BB%BB%E6%84%8F%E5%87%BD%E6%95%B0/</link>
+    <pubDate>Thu, 10 Mar 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/%E5%85%B3%E4%BA%8E%E8%B0%83%E7%94%A8%E4%BB%BB%E6%84%8F%E5%87%BD%E6%95%B0/</guid>
+    <description><![CDATA[关于调用任意函数 为了调用任意函数，我首先写了这个一个简单的代码: int __declspec(naked) executeStdCall(LPVOID func, int argSize, int* argsBuffer) { __asm { mov eax, dword ptr[esp + 0x4]; mov esi, dword ptr[esp + 0x8]; mov ecx, dword ptr[esp + 0xC]; lea ecx, dword ptr[ecx + esi * 0x4 -]]></description>
+</item>
+</channel>
+</rss>

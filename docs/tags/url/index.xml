@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>URL - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/url/</link>
+        <description>URL - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/url/" rel="self" type="application/rss+xml" /><item>
+    <title>URL解析库</title>
+    <link>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/url%E8%A7%A3%E6%9E%90%E5%BA%93/</link>
+    <pubDate>Tue, 27 Jul 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/github%E7%A2%8E%E7%89%87/url%E8%A7%A3%E6%9E%90%E5%BA%93/</guid>
+    <description><![CDATA[URL Parser 解析引擎似乎存在Bug? hcs-url 似乎无法对有缺失的URL进行解析。 EdUrlParser 功能太简单了。 CxxUrl 兼容性似乎不太行。 Url Parser 需要引入Boost三方库 Simple Url Parser 各方面]]></description>
+</item>
+</channel>
+</rss>

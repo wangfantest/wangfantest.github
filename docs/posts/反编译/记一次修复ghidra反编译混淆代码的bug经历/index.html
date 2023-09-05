@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>记一次修复Ghidra反编译混淆代码的Bug经历 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="记一次修复Ghidra反编译混淆代码的Bug经历" />
+<meta property="og:description" content="记一次修复Ghidra反编译混淆代码的Bug经历 最近在尝试使用Ghidra来对混淆代码进行反编译，然而在反编译一段代码的时候出现了问题，这里" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-05T00:00:00+00:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="记一次修复Ghidra反编译混淆代码的Bug经历"/>
+<meta name="twitter:description" content="记一次修复Ghidra反编译混淆代码的Bug经历 最近在尝试使用Ghidra来对混淆代码进行反编译，然而在反编译一段代码的时候出现了问题，这里"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "记一次修复Ghidra反编译混淆代码的Bug经历",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86\/"
+        },"genre": "posts","keywords": "Ghidra","wordcount":  1348 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/%E8%AE%B0%E4%B8%80%E6%AC%A1%E4%BF%AE%E5%A4%8Dghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E6%B7%B7%E6%B7%86%E4%BB%A3%E7%A0%81%E7%9A%84bug%E7%BB%8F%E5%8E%86\/","datePublished": "2023-09-05T00:00:00+00:00","dateModified": "2023-09-05T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">记一次修复Ghidra反编译混淆代码的Bug经历</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>反编译</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-09-05">2023-09-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1348 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#复现问题">复现问题</a></li>
+    <li><a href="#分析bug原因">分析Bug原因</a></li>
+    <li><a href="#解决方案">解决方案</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="记一次修复ghidra反编译混淆代码的bug经历">记一次修复Ghidra反编译混淆代码的Bug经历</h1>
+<p>最近在尝试使用Ghidra来对混淆代码进行反编译，然而在反编译一段代码的时候出现了问题，这里记录一下修复的过程，希望对其他人有起到一点帮助。</p>
+<h2 id="复现问题">复现问题</h2>
+<p>为了方便描述代码经过了简化处理，大概是下面这个样子的:</p>
+<pre tabindex="0"><code class="language-assembly" data-lang="assembly">00401009    push 0x2F9D6707
+0040100E    push 0xD915B19B
+00401013    push 0x1
+00401015    mov ecx,dword ptr ss:[esp+0x6]
+00401019    mov dword ptr ss:[esp+ecx-0x6707D915],0x2
+00401024    pop eax
+00401025    retn
+</code></pre><p>通过实际运行这段代码很明显eax最终的值是0x2，然而Ghidra在这里算出来的eax是0x1。</p>
+<p>我们调试一下Ghidra的反编译过程，在Action::perform函数里面插个日志打印代码，将执行Action后的pcode全部都打印出来，从而快速定位到最关键的Action。</p>
+<p>最终发现是执行oppool1这个动作后，pcode发生了错误，错误之前的pcode是下面这样的;</p>
+<pre tabindex="0"><code>0x00401009:2:	u0x10000014(0x00401009:2) = #0x2f9d6707
+0x00401009:1e:	s0xfffffffc:2(0x00401009:1e) = SUB42(u0x10000014(0x00401009:2),#0x0)
+0x0040100e:5:	u0x10000010(0x0040100e:5) = #0xd915b19b
+0x0040100e:1d:	s0xfffffffa:2(0x0040100e:1d) = SUB42(u0x10000010(0x0040100e:5),#0x2)
+0x00401013:8:	s0xfffffff4(0x00401013:8) = #0x1
+0x00401015:1b:	u0x1000000c(0x00401015:1b) = CONCAT22(s0xfffffffc:2(0x00401009:1e),s0xfffffffa:2(0x0040100e:1d))
+0x00401015:a:	u0x00007a00(0x00401015:a) = u0x1000000c(0x00401015:1b)
+0x00401019:c:	u0x00002700(0x00401019:c) = ESP(i) + #0x98f826df
+0x00401019:e:	u0x00002880(0x00401019:e) = u0x00002700(0x00401019:c) + u0x00007a00(0x00401015:a)
+0x00401019:1a:	s0xfffffff4(0x00401019:1a) = s0xfffffff4(0x00401013:8) [] i0x00401019:10(free)
+0x00401019:10:	*(ram,u0x00002880(0x00401019:e)) = #0x2
+0x00401024:11:	EAX(0x00401024:11) = s0xfffffff4(0x00401019:1a)
+0x00401025:15:	return(EAX(0x00401024:11))
+</code></pre><p>然而执行完oppool1之后，pcode直接变成了</p>
+<pre tabindex="0"><code>0x00401019:e:	u0x00002880(0x00401019:e) = ESP(i) + #0xfffffff4
+0x00401019:10:	*(ram,u0x00002880(0x00401019:e)) = #0x2
+0x00401024:11:	EAX(0x00401024:11) = #0x1
+0x00401025:15:	return(EAX(0x00401024:11)) EAX(0x00401024:11)
+</code></pre><h2 id="分析bug原因">分析Bug原因</h2>
+<p>oppool1其实是Ghidra里面的核心Action之一，里面包含了一系列优化规则，再进一步调试oppool1里面的规则，可以定位到是RulePropagateCopy这个规则，RulePropagateCopy会对CPUI_COPY类型的节点进行传播，规则将</p>
+<pre tabindex="0"><code>0x00401013:8:	s0xfffffff4(0x00401013:8) = #0x1
+0x00401024:11:	EAX(0x00401024:11) = s0xfffffff4(0x00401013:8)
+</code></pre><p>转换成了</p>
+<pre tabindex="0"><code>0x00401024:11:	EAX(0x00401024:11) = #0x1
+</code></pre><p>分析到这里，Ghidra反编译失败的原因就很明显了，在将*(ram,u0x00002880(0x00401019:e))识别成堆栈变量s0xfffffff4之前就进行了传播优化。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>那么怎么解决这个问题呢，Ghidra的oppool1老实说我感觉就像是一个大杂烩，啥规则都往里面扔，里面的优化逻辑就是一直优化，优化到pcode没有发生变化为止，然而优化顺序似乎不怎么能保证，因此我决定自己编写规则。</p>
+<p>模仿oppool2中的RuleStoreVarnode规则，这个规则是尝试将store节点转换为stack变量，我们也写一个RuleVmpStoreVarnode规则，在每次遇到CPUI_STORE类型的pcode的时候，就尝试去计算写入的地址是否是堆栈。规则代码如下:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">RuleVmpStoreVarnode</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Rule</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RuleVmpStoreVarnode</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">g</span><span class="p">)</span> <span class="o">:</span> <span class="n">Rule</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#34;vmpstorevarnode&#34;</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">///&lt; Constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">virtual</span> <span class="n">Rule</span><span class="o">*</span> <span class="nf">clone</span><span class="p">(</span><span class="k">const</span> <span class="n">ActionGroupList</span><span class="o">&amp;</span> <span class="n">grouplist</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">grouplist</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">getGroup</span><span class="p">()))</span> <span class="k">return</span> <span class="p">(</span><span class="n">Rule</span><span class="o">*</span><span class="p">)</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">RuleVmpStoreVarnode</span><span class="p">(</span><span class="n">getGroup</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">getOpList</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint4</span><span class="o">&gt;&amp;</span> <span class="n">oplist</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">virtual</span> <span class="n">int4</span> <span class="nf">applyOp</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">,</span> <span class="n">Funcdata</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">RuleVmpStoreVarnode</span><span class="o">::</span><span class="n">getOpList</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">uint4</span><span class="o">&gt;&amp;</span> <span class="n">oplist</span><span class="p">)</span> <span class="k">const</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">oplist</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">CPUI_STORE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">int4</span> <span class="n">RuleVmpStoreVarnode</span><span class="o">::</span><span class="n">applyOp</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">,</span> <span class="n">Funcdata</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">VmpStackEvaluator</span> <span class="n">evalCall</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Varnode</span><span class="o">*</span> <span class="n">offvn</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">stackOffset</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">evalCall</span><span class="p">.</span><span class="n">EvaluateStackOffset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">offvn</span><span class="p">,</span> <span class="n">stackOffset</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">int4</span> <span class="n">size</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Address</span> <span class="nf">addr</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">getArch</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getStackSpace</span><span class="p">(),</span> <span class="kt">uint32_t</span><span class="p">(</span><span class="n">stackOffset</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">.</span><span class="n">newVarnodeOut</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">op</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">op</span><span class="o">-&gt;</span><span class="n">getOut</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">setStackStore</span><span class="p">();</span>    <span class="c1">// Mark as originally coming from CPUI_STORE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">data</span><span class="p">.</span><span class="n">opRemoveInput</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">.</span><span class="n">opRemoveInput</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="p">.</span><span class="n">opSetOpcode</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">CPUI_COPY</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>为了计算堆栈的偏移，写了一个类VmpStackEvaluator，核心思路就是不断遍历def节点，判断最终是否为esp + xxx这种偏移。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">VmpStackEvaluator</span>
+</span></span><span class="line"><span class="cl"> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">bool</span> <span class="n">EvaluateStackOffset</span><span class="p">(</span><span class="n">Funcdata</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">,</span><span class="n">Varnode</span><span class="o">*</span> <span class="n">vn</span><span class="p">,</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">outOffset</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="n">uintb</span> <span class="n">traceVarnodeStack</span><span class="p">(</span><span class="n">Varnode</span><span class="o">*</span> <span class="n">vn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">uintb</span> <span class="nf">tracePcodeStack</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">     <span class="n">uintb</span> <span class="nf">eval</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> <span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">bool</span> <span class="n">bContainEsp</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="kt">bool</span> <span class="n">bError</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="n">VarnodeData</span> <span class="n">espLoc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">uintb</span> <span class="n">VmpStackEvaluator</span><span class="o">::</span><span class="n">eval</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span><span class="n">bError</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uintb</span> <span class="n">val1</span> <span class="o">=</span> <span class="n">traceVarnodeStack</span><span class="p">(</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uintb</span> <span class="n">val2</span> <span class="o">=</span> <span class="n">traceVarnodeStack</span><span class="p">(</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uintb</span> <span class="n">calVal</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">getOpcode</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">evaluateBinary</span><span class="p">(</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">getOut</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">(),</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">(),</span> <span class="n">val1</span><span class="p">,</span> <span class="n">val2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">calVal</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">uintb</span> <span class="n">VmpStackEvaluator</span><span class="o">::</span><span class="n">tracePcodeStack</span><span class="p">(</span><span class="n">PcodeOp</span><span class="o">*</span> <span class="n">op</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">bError</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OpCode</span> <span class="n">code</span> <span class="o">=</span> <span class="n">op</span><span class="o">-&gt;</span><span class="n">code</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="n">code</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nl">CPUI_INT_ADD</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nl">CPUI_INT_SUB</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nl">CPUI_PIECE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nl">CPUI_SUBPIECE</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">eval</span><span class="p">(</span><span class="n">op</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nl">CPUI_COPY</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">traceVarnodeStack</span><span class="p">(</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">getIn</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bError</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">uintb</span> <span class="n">VmpStackEvaluator</span><span class="o">::</span><span class="n">traceVarnodeStack</span><span class="p">(</span><span class="n">Varnode</span><span class="o">*</span> <span class="n">vn</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">bError</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">vn</span><span class="o">-&gt;</span><span class="n">isConstant</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">vn</span><span class="o">-&gt;</span><span class="n">getOffset</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">vn</span><span class="o">-&gt;</span><span class="n">isInput</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">vn</span><span class="o">-&gt;</span><span class="n">getSpace</span><span class="p">()</span> <span class="o">==</span> <span class="n">espLoc</span><span class="p">.</span><span class="n">space</span> <span class="o">&amp;&amp;</span> <span class="n">vn</span><span class="o">-&gt;</span><span class="n">getOffset</span><span class="p">()</span> <span class="o">==</span> <span class="n">espLoc</span><span class="p">.</span><span class="n">offset</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bContainEsp</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bError</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PcodeOp</span><span class="o">*</span> <span class="n">defOp</span> <span class="o">=</span> <span class="n">vn</span><span class="o">-&gt;</span><span class="n">getDef</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">defOp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bError</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mh">0x0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">tracePcodeStack</span><span class="p">(</span><span class="n">defOp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">VmpStackEvaluator</span><span class="o">::</span><span class="n">EvaluateStackOffset</span><span class="p">(</span><span class="n">Funcdata</span><span class="o">&amp;</span> <span class="n">data</span><span class="p">,</span> <span class="n">Varnode</span><span class="o">*</span> <span class="n">vn</span><span class="p">,</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">outOffset</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">espLoc</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">getArch</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">translate</span><span class="o">-&gt;</span><span class="n">getRegister</span><span class="p">(</span><span class="s">&#34;ESP&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vn</span><span class="o">-&gt;</span><span class="n">isWritten</span><span class="p">())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PcodeOp</span><span class="o">*</span> <span class="n">defOp</span> <span class="o">=</span> <span class="n">vn</span><span class="o">-&gt;</span><span class="n">getDef</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">defOp</span><span class="o">-&gt;</span><span class="n">code</span><span class="p">()</span> <span class="o">!=</span> <span class="n">CPUI_INT_ADD</span> <span class="o">&amp;&amp;</span> <span class="n">defOp</span><span class="o">-&gt;</span><span class="n">code</span><span class="p">()</span> <span class="o">!=</span> <span class="n">CPUI_INT_SUB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">outOffset</span> <span class="o">=</span> <span class="n">tracePcodeStack</span><span class="p">(</span><span class="n">defOp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">bError</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">bContainEsp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>不管效率怎么样，往oppool1里面扔进去这个规则，执行后最终的代码变成了:</p>
+<pre tabindex="0"><code>0x00401024:11:	EAX(0x00401024:11) = #0x2
+0x00401025:15:	return(EAX(0x00401024:11))
+</code></pre><p>也算是勉强完成了修复吧</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-09-05</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ghidra/">Ghidra</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E6%B8%B8%E6%88%8F%E8%AF%84%E6%B5%8B/" class="prev" rel="prev" title="游戏评测"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>游戏评测</a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

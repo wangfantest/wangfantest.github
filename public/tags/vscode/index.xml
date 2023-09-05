@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>VSCODE - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/vscode/</link>
+        <description>VSCODE - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/vscode/" rel="self" type="application/rss+xml" /><item>
+    <title>VSCODE学习</title>
+    <link>https://fjqisba.github.io/posts/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/vscode%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/vscode%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[VS Code学习 VS Code介绍:全能的现代化开发环境，非常适合全栈开发工程师。 下载地址:https://code.visualstudio.c]]></description>
+</item></channel>
+</rss>

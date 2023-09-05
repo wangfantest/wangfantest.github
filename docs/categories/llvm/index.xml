@@ -1,0 +1,32 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>LLVM - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/llvm/</link>
+        <description>LLVM - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sat, 09 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/llvm/" rel="self" type="application/rss+xml" /><item>
+    <title>LLVM IR简介(三)</title>
+    <link>https://fjqisba.github.io/posts/llvm/llvm-ir%E7%AE%80%E4%BB%8B%E4%B8%89/</link>
+    <pubDate>Sat, 09 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/llvm/llvm-ir%E7%AE%80%E4%BB%8B%E4%B8%89/</guid>
+    <description><![CDATA[LLVM的核心是中间端表达式，即LLVM IR(Intermediate Representation)，这是一种类似汇编的底层语言。 中间端表达式有三种存在形态: 一种文本形]]></description>
+</item>
+<item>
+    <title>LLVM整体架构(二)</title>
+    <link>https://fjqisba.github.io/posts/llvm/llvm%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%BA%8C/</link>
+    <pubDate>Thu, 07 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/llvm/llvm%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%BA%8C/</guid>
+    <description><![CDATA[前端代码生成LLVM IR 使用以下命令将源代码转换成LLVM IR文本。 clang -emit-llvm -S test.c -o test.ll 前端代码生成可执行程序 基本选项是定义目标体系结构，语法为-ta]]></description>
+</item>
+<item>
+    <title>在Windows下搭建LLVM环境(一)</title>
+    <link>https://fjqisba.github.io/posts/llvm/%E5%9C%A8windows%E4%B8%8B%E6%90%AD%E5%BB%BAllvm%E7%8E%AF%E5%A2%83%E4%B8%80/</link>
+    <pubDate>Wed, 06 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/llvm/%E5%9C%A8windows%E4%B8%8B%E6%90%AD%E5%BB%BAllvm%E7%8E%AF%E5%A2%83%E4%B8%80/</guid>
+    <description><![CDATA[LLVM是一个非常有名的开源编译器框架，由C++编写。 介绍:LLVM - 维基百科，自由的百科全书 (wikipedia.org) Github项目地址:llvm-projec]]></description>
+</item>
+</channel>
+</rss>

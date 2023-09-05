@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Hugo搭建LoveIt博客 - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="Hugo搭建LoveIt博客" />
+<meta property="og:description" content="系统又又又重装了，又又又忘了怎么配置博客，所以做笔记是有多么重要。。。。 Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2/" />
+<meta property="article:published_time" content="2021-01-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo搭建LoveIt博客"/>
+<meta name="twitter:description" content="系统又又又重装了，又又又忘了怎么配置博客，所以做笔记是有多么重要。。。。 Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/" /><link rel="next" href="https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo搭建LoveIt博客",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2\/"
+        },"genre": "posts","keywords": "Hugo, 博客","wordcount":  923 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/hugo%E6%90%AD%E5%BB%BAloveit%E5%8D%9A%E5%AE%A2\/","datePublished": "2021-01-24T00:00:00+00:00","dateModified": "2021-01-24T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "fjqisba"},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Hugo搭建LoveIt博客</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>fjqisba</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%9D%82%E6%96%87/"><i class="far fa-folder fa-fw"></i>杂文</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-24">2021-01-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 923 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#遇到的坑">遇到的坑</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>系统又又又重装了，又又又忘了怎么配置博客，所以做笔记是有多么重要。。。。</p>
+<p>Hugo是由Go语言实现的静态网站生成器。简单、易用、高效、易扩展、快速部署。</p>
+<h5 id="1下载hugo">1.下载Hugo</h5>
+<p>地址如下，找到对应平台的二进制包，下载后将工具目录添加至系统环境变量。</p>
+<p><a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p>
+<p>需要注意的是，由于LoveIt主题使用了一些特性，因此我们需要下载hugo_extended版本，否则可能会生成博客失败。</p>
+<h5 id="2创建博客">2.创建博客</h5>
+<p>执行以下命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo new site testDemo
+<span class="nb">cd</span> testDemo
+git init
+git submodule add https://github.com/dillonzq/LoveIt.git themes/LoveIt
+</code></pre></div><p>之后修改testDemo目录下的config.toml文件，该文件可以用来配置主题信息，例如修改为如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="nx">baseURL</span> <span class="p">=</span> <span class="s2">&#34;http://example.org/&#34;</span>
+<span class="c"># [en, zh-cn, fr, ...] 设置默认的语言</span>
+<span class="nx">defaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;zh-cn&#34;</span>
+<span class="c"># 网站语言, 仅在这里 CN 大写</span>
+<span class="nx">languageCode</span> <span class="p">=</span> <span class="s2">&#34;zh-CN&#34;</span>
+<span class="c"># 是否包括中日韩文字</span>
+<span class="nx">hasCJKLanguage</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="c"># 网站标题</span>
+<span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;我的全新 Hugo 网站&#34;</span>
+
+<span class="c"># 更改使用 Hugo 构建网站时使用的默认主题</span>
+<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;LoveIt&#34;</span>
+
+<span class="p">[</span><span class="nx">params</span><span class="p">]</span>
+  <span class="c"># LoveIt 主题版本</span>
+  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.2.X&#34;</span>
+
+<span class="p">[</span><span class="nx">menu</span><span class="p">]</span>
+  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;posts&#34;</span>
+    <span class="c"># 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标</span>
+    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="c"># 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标</span>
+    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;文章&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/posts/&#34;</span>
+    <span class="c"># 当你将鼠标悬停在此菜单链接上时, 将显示的标题</span>
+    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;标签&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/tags/&#34;</span>
+    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+  <span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">identifier</span> <span class="p">=</span> <span class="s2">&#34;categories&#34;</span>
+    <span class="nx">pre</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">post</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;分类&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;/categories/&#34;</span>
+    <span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span>
+
+<span class="c"># Hugo 解析文档的配置</span>
+<span class="p">[</span><span class="nx">markup</span><span class="p">]</span>
+  <span class="c"># 语法高亮设置 (https://gohugo.io/content-management/syntax-highlighting)</span>
+  <span class="p">[</span><span class="nx">markup</span><span class="p">.</span><span class="nx">highlight</span><span class="p">]</span>
+    <span class="c"># false 是必要的设置 (https://github.com/dillonzq/LoveIt/issues/158)</span>
+    <span class="nx">noClasses</span> <span class="p">=</span> <span class="kc">false</span>
+
+</code></pre></div><h5 id="3添加文章">3.添加文章</h5>
+<p>我们可以在<code>testDemo/content/posts</code>目录下添加md文件，例如first_post.md</p>
+<div class="highlight"><pre class="chroma"><code class="language-markdown" data-lang="markdown">---
+title: &#34;我是第一篇文章&#34;
+date: 2021-01-24
+tags: [&#34;笔记&#34;,&#34;博客&#34;]
+categories: [&#34;杂文&#34;]
+---
+
+这是我的第一篇文章
+</code></pre></div><h5 id="4调试">4.调试</h5>
+<p>添加完成后，执行下面的命令开启动态预览博客。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">hugo server
+</code></pre></div><p>执行完成后，命令会返回一个本地网址，我们可以通过该网址查看博客内容。</p>
+<h5 id="5发布">5.发布</h5>
+<p>使用以下命令行，生成html内容</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">rm -f -r docs
+hugo -b <span class="s2">&#34;https://fjqisba.github.io&#34;</span> -d docs
+git add .
+git status
+git commit -m <span class="s2">&#34;content update&#34;</span>
+git push
+</code></pre></div><p>这个生成的docs文件夹其实就是Github Pages要展示的内容了，因此在项目配置中的Settings -&gt; Pages -&gt; Source这一栏，我们需要将目录/root修改为/docs。</p>
+<h3 id="遇到的坑">遇到的坑</h3>
+<ul>
+<li>markdown文件在网页的路径中不能出现小数点之类的特殊字符。</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-01-24</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hugo/">Hugo</a>,&nbsp;<a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/" class="prev" rel="prev" title="易语言支持库中的加密数据与解密数据"><i class="fas fa-angle-left fa-fw"></i>易语言支持库中的加密数据与解密数据</a>
+            <a href="/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/" class="next" rel="next" title="DLL2C试用">DLL2C试用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据库 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+        <description>数据库 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Thu, 23 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="self" type="application/rss+xml" /><item>
+    <title>Mysql学习</title>
+    <link>https://fjqisba.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Thu, 23 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[Mysql学习 Mysql的安装 Windows平台下: 需要安装Mysql Community Server，下载地址:https://dev.mysql.com/]]></description>
+</item>
+<item>
+    <title>ClickHouse学习</title>
+    <link>https://fjqisba.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/clickhouse%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Thu, 16 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%95%B0%E6%8D%AE%E5%BA%93/clickhouse%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[ClickHouse ClickHouse是俄罗斯Yandex于2016年开源的一个高性能的SQL数据库。我对这个数据库的看法是，如果你的数据只涉及到读和写，不]]></description>
+</item>
+</channel>
+</rss>

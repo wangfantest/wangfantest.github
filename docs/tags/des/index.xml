@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>DES - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/des/</link>
+        <description>DES - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/des/" rel="self" type="application/rss+xml" /><item>
+    <title>易语言支持库中的加密数据与解密数据</title>
+    <link>https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/</link>
+    <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E6%98%93%E8%AF%AD%E8%A8%80/%E6%98%93%E8%AF%AD%E8%A8%80%E6%94%AF%E6%8C%81%E5%BA%93%E4%B8%AD%E7%9A%84%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E4%B8%8E%E8%A7%A3%E5%AF%86%E6%95%B0%E6%8D%AE/</guid>
+    <description><![CDATA[易语言数据操作支持库一中存在这样一对算法函数 调用格式： 〈字节集〉 加密数据 （字节集 字节集数据，文本型 密码文本，［整数型 加密算法］） - 数据操作支]]></description>
+</item>
+</channel>
+</rss>

@@ -1,0 +1,48 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/linux/</link>
+        <description>Linux - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 23 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>ubuntu替换apt源</title>
+    <link>https://fjqisba.github.io/posts/linux/ubuntu%E6%9B%BF%E6%8D%A2apt%E6%BA%90/</link>
+    <pubDate>Sun, 23 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/ubuntu%E6%9B%BF%E6%8D%A2apt%E6%BA%90/</guid>
+    <description><![CDATA[ubuntu替换apt源 有一些主机使用apt get命令会出现各种问题，那么很有可能是apt源有问题。 可以试试替换阿里云的软件源。 1、修改/e]]></description>
+</item>
+<item>
+    <title>ubuntu开启远程桌面可视化</title>
+    <link>https://fjqisba.github.io/posts/linux/ubuntu%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+    <pubDate>Sat, 22 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/ubuntu%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+    <description><![CDATA[ubuntu开启远程桌面可视化 首先要让系统具备可视化桌面的能力。 安装X-Window X-Windows是一款桌面可视化系统。 执行以下命令 sudo apt-get]]></description>
+</item>
+<item>
+    <title>linux安装nload命令</title>
+    <link>https://fjqisba.github.io/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Wed, 10 Nov 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/linux%E5%AE%89%E8%A3%85nload%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[安装nload工具 nload可以用来查看linux网络流量，用来实时监测网络流量和带宽使用情况。 yum install gcc yum install gcc gcc-c++ gcc-g77 sudo yum -y install ncurses sudo yum -y install ncurses-devel yum install wget #]]></description>
+</item>
+<item>
+    <title>Docker容器学习</title>
+    <link>https://fjqisba.github.io/posts/linux/docker%E5%AE%B9%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/docker%E5%AE%B9%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[Docker容器学习 docker查询容器 docker ps docker进入容器 docker exec -it 容器id ash docker exec -u root -it 容器id ash docker列举本地已有镜像 docker images docker 保存镜]]></description>
+</item>
+<item>
+    <title>Cygwin和Wine</title>
+    <link>https://fjqisba.github.io/posts/linux/cygwin/</link>
+    <pubDate>Wed, 11 Aug 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/linux/cygwin/</guid>
+    <description><![CDATA[​ 在我们遇到与跨平台有关的一些事的时候，估计就会碰上这玩意。Cygwin提供了一个在Windows下面使用Linux环境的平台。 ​ 这个cyg]]></description>
+</item>
+</channel>
+</rss>

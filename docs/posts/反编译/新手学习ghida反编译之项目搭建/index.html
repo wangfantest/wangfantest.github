@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title> - fjqisba的个人博客</title><meta name="Description" content="个人笔记本"><meta property="og:title" content="" />
+<meta property="og:description" content="新手学习Ghida反编译之项目搭建 反编译是逆向的核心，然而这方面的研究似乎并不多，ida反编译固然强大，然而对外只提供了残缺的sdk，ret" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0ghida%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" /><meta property="article:section" content="posts" />
+
+<meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="新手学习Ghida反编译之项目搭建 反编译是逆向的核心，然而这方面的研究似乎并不多，ida反编译固然强大，然而对外只提供了残缺的sdk，ret"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0ghida%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/" /><link rel="prev" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0vmp%E4%B9%8Bhandler%E8%AF%86%E5%88%AB/" /><link rel="next" href="https://fjqisba.github.io/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8Bsleigh%E7%BC%96%E8%AF%91/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0ghida%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA\/"
+        },"genre": "posts","wordcount":  1505 ,
+        "url": "https:\/\/fjqisba.github.io\/posts\/%E5%8F%8D%E7%BC%96%E8%AF%91\/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0ghida%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8B%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA\/","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "fjqisba"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="fjqisba的个人博客">主页</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于作者 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="fjqisba的个人博客">主页</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于作者</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX"></h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>fjqisba</a>
+</span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1505 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><h1 id="新手学习ghida反编译之项目搭建">新手学习Ghida反编译之项目搭建</h1>
+<p>反编译是逆向的核心，然而这方面的研究似乎并不多，ida反编译固然强大，然而对外只提供了残缺的sdk，retdec更倾向于是实验品，且已停止维护。Ghidra是目前能在网上找到的最强开源反编译器了。</p>
+<p>因此写一篇记录方便更多人入门学习该项目。</p>
+<p>项目地址:</p>
+<p><a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noopener noreffer">https://github.com/NationalSecurityAgency/ghidra</a>
+</p>
+<p>其中界面和逻辑处理部分的代码是用java写的，然而核心的反编译部分是用C++写的，完全可以剥离出来一个独立项目。</p>
+<p>反编译部分的代码位于https://github.com/NationalSecurityAgency/ghidra/tree/master/Ghidra/Features/Decompiler/src/decompile/cpp</p>
+<p>使用Visual Studio新建一个空项目，直接拖入全部的代码，然后编译之。。。</p>
+<p>这样肯定是不能通过的，需要进行一些项目修复:</p>
+<p>1、在C/C++ -&gt; 预处理器上添加预处理器定义</p>
+<pre tabindex="0"><code>_CRT_SECURE_NO_WARNINGS
+_WINDOWS
+</code></pre><p>C/C++ -&gt; 常规 -&gt; SDL检查，改为否</p>
+<p>高级 -&gt; 字符集，使用多字节字符集</p>
+<p>2、处理loadimage_bfd文件</p>
+<p>由于loadimage_bfd类中引用了bfd这个库，这个类主要是用来解析PE、符号，读取二进制数据相关的功能，而msvc编译器是不支持的，因此可以直接移除loadimage_bfd.hh、loadimage_bfd.cc、bfd_arch.hh、bfd_arch.cc这几个文件，或者自己写个类来代替。</p>
+<p>ghidra_process.cc、sleighexample.cc、slgh_compile.cc、test.cc、consolemain.cc这几个文件中有main函数，想编译哪个项目，就移除其它的cc文件即可。</p>
+<p>test.cc看起来像是做单元测试用的，直接移除。</p>
+<p>ghidra_process看起来像是编译一个反编译后台进程给Ghidra前端用的，也直接移除。</p>
+<p>slgh_compile.cc看起来像是和Sleigh编译器有关，这里抄一下gpt的解释</p>
+<blockquote>
+<p>在Ghidra项目中，<code>slgh_compile.cc</code>文件是用于编译Sleigh语言的编译器的源代码文件。Sleigh语言是一种特定于Ghidra的领域特定语言（DSL），用于描述处理器指令集的语义和模式。</p>
+<p>Sleigh编译器负责将Sleigh语言描述的处理器指令集编译成中间表示形式，以便Ghidra可以使用它来进行二进制代码的逆向工程和分析。<code>slgh_compile.cc</code>文件实现了Sleigh编译器的主要逻辑和算法。</p>
+</blockquote>
+<p>这里暂时用不上，如果要移除，需要将与之有关的slghparse、slghscan文件也一并移除，或者直接去掉main函数。</p>
+<p>sleighexample.cc比较有用，作用是输入一段二进制，可以用来反汇编、打印pcode或者是模拟执行。</p>
+<p>consolemain.cc算是一个完整的控制台，输入一个文件，可以执行反编译打印源码等一系列操作。</p>
+<p>这里只说明一下consolemain这个项目，首先里面有一个startDecompilerLibrary函数，这个函数作用是用扫描sleigh一些预定义数据文件的，这个文件一般在Ghidra/Processors/*/data/languages目录里面，函数参数的话传入Ghidra反编译程序的根目录就行了。之前说的loadimage类，需要自己进行补充，这里可以参考一下这个项目https://github.com/airbus-cert/Yagi/blob/main/yagi/src/idaloader.cc</p>
+<p>跑起来后是一个控制台，输入类似下面的命令:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">load</span> <span class="n">file</span> <span class="n">C:</span><span class="p">\</span><span class="n">123</span><span class="p">.</span><span class="n">exe</span>
+</span></span><span class="line"><span class="cl"><span class="n">load</span> <span class="n">addr</span> <span class="n">0x401000</span>
+</span></span><span class="line"><span class="cl"><span class="n">decompile</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span> <span class="n">C</span>
+</span></span></code></pre></div><p>就能够完成反编译流程，输出源码文件了。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/%E6%96%B0%E6%89%8B%E5%AD%A6%E4%B9%A0vmp%E4%B9%8Bhandler%E8%AF%86%E5%88%AB/" class="prev" rel="prev" title=""><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i></a>
+            <a href="/posts/%E5%8F%8D%E7%BC%96%E8%AF%91/ghidra%E5%8F%8D%E7%BC%96%E8%AF%91%E4%B9%8Bsleigh%E7%BC%96%E8%AF%91/" class="next" rel="next" title=""><i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">fjqisba</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.105.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2020 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">fjqisba</a></span>&nbsp;|&nbsp;<span class="license">MIT</span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

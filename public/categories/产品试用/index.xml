@@ -1,0 +1,43 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>产品试用 - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/</link>
+        <description>产品试用 - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 30 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>图标设计</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1/</link>
+    <pubDate>Wed, 30 Jun 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1/</guid>
+    <description><![CDATA[​ 在起手开发一个程序的时候，我们总是想先决定好程序的图标，毕竟只有图标选好了，程序的代码才放心敲下去不是吗？ 图标素材库 https://www.flaticon.com http://flat-icon-design.com http://www.fontawesome.com.cn/ 将任意图片转成i]]></description>
+</item><item>
+    <title>音乐存储</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E9%9F%B3%E4%B9%90%E5%AD%98%E5%82%A8/</link>
+    <pubDate>Sun, 14 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E9%9F%B3%E4%B9%90%E5%AD%98%E5%82%A8/</guid>
+    <description><![CDATA[由于不同的应用都有的自己的音乐版权，而我们如果想要存储自己想听的歌，那么该怎么做呢？ 使用物理硬盘存储 现在的机械硬盘容量很大，又十分便宜，把歌]]></description>
+</item><item>
+    <title>下载工具</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/</link>
+    <pubDate>Fri, 12 Mar 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7/</guid>
+    <description><![CDATA[kinhdown https://kinhdown.kinh.cc/ 用来下载百度云盘里面的东西，速度的话还算是能满足日常使用需求的。不过据说会窃取用户的cookie，如果对这一点不在意的话，那么还是选择这]]></description>
+</item><item>
+    <title>DLL2C试用</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/</link>
+    <pubDate>Sun, 24 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/dll2c%E8%AF%95%E7%94%A8/</guid>
+    <description><![CDATA[今天看到一款产品，据说能将DLL或者EXE转换为可编译的C/C++代码，官网地址如下: https://www.dll-decompiler.cn/dll2c.html 官方介绍如下: DLL to C 是一个能够把所有DLL文件和部分]]></description>
+</item><item>
+    <title>PDF阅读器试用</title>
+    <link>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/pdf%E9%98%85%E8%AF%BB%E5%99%A8%E8%AF%95%E7%94%A8/</link>
+    <pubDate>Fri, 08 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/posts/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/pdf%E9%98%85%E8%AF%BB%E5%99%A8%E8%AF%95%E7%94%A8/</guid>
+    <description><![CDATA[福昕PDF阅读器(目前的选择) 感觉比较专业，标签页结构清晰，支持多种形式保存标签，功能较为齐全。 Sumatra PDF 一款开源的PDF阅读器，只能满足基本的阅]]></description>
+</item></channel>
+</rss>

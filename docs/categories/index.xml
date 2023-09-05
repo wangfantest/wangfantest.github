@@ -1,0 +1,88 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/</link>
+        <description>Categories - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>反编译</title>
+    <link>https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/</link>
+    <pubDate>Tue, 05 Sep 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>产品试用</title>
+    <link>https://fjqisba.github.io/categories/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/</link>
+    <pubDate>Sun, 30 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E4%BA%A7%E5%93%81%E8%AF%95%E7%94%A8/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Python</title>
+    <link>https://fjqisba.github.io/categories/python/</link>
+    <pubDate>Fri, 05 May 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/python/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>godot</title>
+    <link>https://fjqisba.github.io/categories/godot/</link>
+    <pubDate>Wed, 08 Feb 2023 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/godot/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>C&#43;&#43;开发</title>
+    <link>https://fjqisba.github.io/categories/c&#43;&#43;%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Tue, 13 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/c&#43;&#43;%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>前端</title>
+    <link>https://fjqisba.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+    <pubDate>Sat, 10 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>后端开发</title>
+    <link>https://fjqisba.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>安卓逆向</title>
+    <link>https://fjqisba.github.io/categories/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/</link>
+    <pubDate>Tue, 22 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>CSharp</title>
+    <link>https://fjqisba.github.io/categories/csharp/</link>
+    <pubDate>Sun, 20 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/csharp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>杂文</title>
+    <link>https://fjqisba.github.io/categories/%E6%9D%82%E6%96%87/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/categories/%E6%9D%82%E6%96%87/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
+</rss>

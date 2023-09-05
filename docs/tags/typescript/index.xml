@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TypeScript - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/typescript/</link>
+        <description>TypeScript - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/typescript/" rel="self" type="application/rss+xml" /><item>
+    <title>TypeScript学习</title>
+    <link>https://fjqisba.github.io/posts/%E5%89%8D%E7%AB%AF/typescript%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Wed, 02 Nov 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/%E5%89%8D%E7%AB%AF/typescript%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[TypeScript 总的来说就是javascript太乱，强制在javascript上定义了一种新的语言，最后再转换成js。因此ts本质上还是js。 教程:ht]]></description>
+</item>
+</channel>
+</rss>

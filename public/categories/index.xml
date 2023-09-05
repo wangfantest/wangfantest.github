@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/categories/</link>
+        <description>Categories - 分类 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Sun, 06 Feb 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>心情文学</title>
+    <link>https://fjqisba.github.io/categories/%E5%BF%83%E6%83%85%E6%96%87%E5%AD%A6/</link>
+    <pubDate>Sun, 06 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E5%BF%83%E6%83%85%E6%96%87%E5%AD%A6/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>项目管理</title>
+    <link>https://fjqisba.github.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Sat, 05 Feb 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Linux</title>
+    <link>https://fjqisba.github.io/categories/linux/</link>
+    <pubDate>Sun, 23 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/linux/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Go语言</title>
+    <link>https://fjqisba.github.io/categories/go%E8%AF%AD%E8%A8%80/</link>
+    <pubDate>Mon, 17 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/go%E8%AF%AD%E8%A8%80/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>浏览器框架</title>
+    <link>https://fjqisba.github.io/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</link>
+    <pubDate>Sun, 09 Jan 2022 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A1%86%E6%9E%B6/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>后端开发</title>
+    <link>https://fjqisba.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>数据库</title>
+    <link>https://fjqisba.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <pubDate>Thu, 23 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>CSharp</title>
+    <link>https://fjqisba.github.io/categories/csharp/</link>
+    <pubDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/csharp/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>编程工具</title>
+    <link>https://fjqisba.github.io/categories/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</link>
+    <pubDate>Tue, 14 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E7%BC%96%E7%A8%8B%E5%B7%A5%E5%85%B7/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>反编译</title>
+    <link>https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/</link>
+    <pubDate>Mon, 06 Dec 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://fjqisba.github.io/categories/%E5%8F%8D%E7%BC%96%E8%AF%91/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

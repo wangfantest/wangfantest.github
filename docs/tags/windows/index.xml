@@ -1,0 +1,24 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Windows - 标签 - fjqisba的个人博客</title>
+        <link>https://fjqisba.github.io/tags/windows/</link>
+        <description>Windows - 标签 - fjqisba的个人博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>fjqisba@sohu.com (fjqisba)</managingEditor>
+            <webMaster>fjqisba@sohu.com (fjqisba)</webMaster><lastBuildDate>Tue, 18 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://fjqisba.github.io/tags/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>vcpkg使用指南</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/vcpkg%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link>
+    <pubDate>Tue, 18 Oct 2022 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/vcpkg%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid>
+    <description><![CDATA[vcpkg 微软开源的项目，地址为:https://github.com/microsoft/vcpkg 经常写C++的老铁们就知道使用一个三方库有麻烦]]></description>
+</item>
+<item>
+    <title>Windows应用开发</title>
+    <link>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/windows%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</link>
+    <pubDate>Sat, 09 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>fjqisba</author>
+    <guid>https://fjqisba.github.io/posts/c&#43;&#43;%E5%BC%80%E5%8F%91/windows%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91/</guid>
+    <description><![CDATA[Windows创建计划任务 schtasks create | Microsoft Docs]]></description>
+</item>
+</channel>
+</rss>
